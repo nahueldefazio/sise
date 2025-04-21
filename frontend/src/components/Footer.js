@@ -3,7 +3,7 @@ import { Container, Typography, Box, Link, TextField, Button } from '@mui/materi
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useState } from 'react';
-import { validateEmail, validateName } from '../utils/validations';
+import { validateEmail, validateName } from '../../../backend/app/utils/validations';
 
 function Footer() {
   const [errors, setErrors] = useState({});
