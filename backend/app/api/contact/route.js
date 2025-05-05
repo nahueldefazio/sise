@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 export async function POST(request) {
   // Configura CORS
   const headers = {
-    'Access-Control-Allow-Origin': 'http://localhost:3000', // Reemplaza con la URL de tu frontend
+    'Access-Control-Allow-Origin': 'http://localhost:3001', // Reemplaza con la URL de tu frontend
     'Access-Control-Allow-Methods': 'POST',
     'Access-Control-Allow-Headers': 'Content-Type',
   };
@@ -79,7 +79,7 @@ export async function POST(request) {
 export async function OPTIONS() {
   return NextResponse.json({}, {
     headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      'Access-Control-Allow-Origin': 'http://localhost:3001',
       'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Headers': 'Content-Type',
     },
