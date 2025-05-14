@@ -45,25 +45,75 @@ function Footer() {
   return (
     <Box sx={{ bgcolor: '#1a1a1a', color: 'white', py: 4, mt: 'auto' }}>
       <Container maxWidth="lg">
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' }, 
+          justifyContent: 'space-between',
+          gap: 4 
+        }}>
           {/* SISE Information */}
           <Box sx={{ flex: 1 }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>SISE</Typography>
-            <Typography variant="body2" sx={{ mb: 2 }}>
+            <Typography variant="h6" sx={{ 
+              mb: 2, 
+              color: '#fff',
+              borderBottom: '1px solid rgba(255,255,255,0.3)',
+              pb: 1,
+              textTransform: 'uppercase',
+              letterSpacing: '1px'
+            }}>
+              SISE
+            </Typography>
+            <Typography variant="body2" sx={{ 
+              mb: 2, 
+              lineHeight: 1.8,
+              fontStyle: 'italic',
+              color: 'rgba(255,255,255,0.8)'
+            }}>
               Nuestro objetivo es ganarnos la confianza de aquellos que nos han entregado la responsabilidad
               de protegerlos y seguir dándoles la seguridad a sus seres queridos y sus bienes.
             </Typography>
-            <Link href="/politicas-de-privacidad" sx={{ color: '#ff9800', textDecoration: 'none' }}>
-              políticas de privacidad
-            </Link>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              Conocé nuestras <Link href="/politicas-de-privacidad" sx={{ 
+                color: '#FDEC06', 
+                textDecoration: 'none',
+                '&:hover': { textDecoration: 'underline' }
+              }}>
+                políticas de privacidad
+              </Link>
+            </Typography>
             <Box sx={{ mt: 2 }}>
-              <Typography variant="body2">Encontranos también en</Typography>
-              <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                <Link href="https://www.facebook.com/sise.com.ar" target="_blank" sx={{ color: 'white' }}>
-                  <FacebookIcon />
+              <Typography variant="body2" sx={{ 
+                mb: 2,
+                color: 'rgba(255,255,255,0.8)'
+              }}>
+                Encontranos también en
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <Link 
+                  href="https://www.facebook.com/sise.com.ar" 
+                  target="_blank" 
+                  sx={{ 
+                    bgcolor: '#3b5998',
+                    borderRadius: '50%',
+                    p: 1,
+                    display: 'flex',
+                    '&:hover': { opacity: 0.8 }
+                  }}
+                >
+                  <FacebookIcon sx={{ color: 'white', fontSize: 20 }} />
                 </Link>
-                <Link href="https://www.instagram.com/sise_seguridad" target="_blank" sx={{ color: 'white' }}>
-                  <InstagramIcon />
+                <Link 
+                  href="https://www.instagram.com/sise_seguridad" 
+                  target="_blank" 
+                  sx={{ 
+                    bgcolor: '#833AB4',
+                    borderRadius: '50%',
+                    p: 1,
+                    display: 'flex',
+                    '&:hover': { opacity: 0.8 }
+                  }}
+                >
+                  <InstagramIcon sx={{ color: 'white', fontSize: 20 }} />
                 </Link>
               </Box>
             </Box>
@@ -71,68 +121,68 @@ function Footer() {
 
           {/* Contact Information */}
           <Box sx={{ flex: 1 }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>Contacto</Typography>
-            <Typography variant="body2">Oficina +54 11 3221-5517</Typography>
-            <Typography variant="body2">Fax +54 11 3221 2100-5517</Typography>
-            <Box sx={{ mt: 2 }}>
-              <Typography variant="body2">ventas@sise.com.ar</Typography>
-              <Typography variant="body2">info@sise.com.ar</Typography>
-              <Typography variant="body2">administracion@sise.com.ar</Typography>
+            <Typography variant="h6" sx={{ 
+              mb: 2, 
+              color: '#fff',
+              borderBottom: '1px solid rgba(255,255,255,0.3)',
+              pb: 1,
+              textTransform: 'uppercase',
+              letterSpacing: '1px'
+            }}>
+              Contacto
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              Oficina <Box component="span" sx={{ color: '#FDEC06' }}>+54 11 3221-5517</Box>
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              Fax <Box component="span" sx={{ color: '#FDEC06' }}>+54 11 3221 2100-5517</Box>
+            </Typography>
+            
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="body2" component="a" href="mailto:ventas@sise.com.ar" sx={{ 
+                display: 'block',
+                color: '#FDEC06',
+                textDecoration: 'none',
+                mb: 1,
+                '&:hover': { opacity: 0.8 }
+              }}>
+                ventas@sise.com.ar
+              </Typography>
+              <Typography variant="body2" component="a" href="mailto:info@sise.com.ar" sx={{ 
+                display: 'block',
+                color: '#FDEC06',
+                textDecoration: 'none',
+                mb: 1,
+                '&:hover': { opacity: 0.8 }
+              }}>
+                info@sise.com.ar
+              </Typography>
+              <Typography variant="body2" component="a" href="mailto:administracion@sise.com.ar" sx={{ 
+                display: 'block',
+                color: '#FDEC06',
+                textDecoration: 'none',
+                '&:hover': { opacity: 0.8 }
+              }}>
+                administracion@sise.com.ar
+              </Typography>
             </Box>
-            <Box sx={{ mt: 2 }}>
-              <Typography variant="body2">Horario de oficina</Typography>
-              <Typography variant="body2">de lunes a viernes de 9:00 a 18:00</Typography>
-              <Typography variant="body2">Servicio técnico las 24 horas</Typography>
-            </Box>
-          </Box>
 
-          {/* Subscription Form */}
-          <Box sx={{ flex: 1 }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>Manténete al tanto de nuestras promociones</Typography>
-            <Box component="form" onSubmit={handleSubmit}>
-              <TextField
-                fullWidth
-                name="name"
-                placeholder="Nombre"
-                error={!!errors.name}
-                helperText={errors.name}
-                sx={{
-                  mb: 2,
-                  '& .MuiOutlinedInput-root': {
-                    color: 'white',
-                    '& fieldset': { borderColor: 'white' },
-                    '&:hover fieldset': { borderColor: 'white' },
-                    '& input::placeholder': { color: 'rgba(255, 255, 255, 0.7)' }
-                  }
-                }}
-              />
-              <TextField
-                fullWidth
-                name="email"
-                type="email"
-                placeholder="Correo Electrónico"
-                error={!!errors.email}
-                helperText={errors.email}
-                sx={{
-                  mb: 2,
-                  '& .MuiOutlinedInput-root': {
-                    color: 'white',
-                    '& fieldset': { borderColor: 'white' },
-                    '&:hover fieldset': { borderColor: 'white' },
-                    '& input::placeholder': { color: 'rgba(255, 255, 255, 0.7)' }
-                  }
-                }}
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  bgcolor: '#0039a6',
-                  '&:hover': { bgcolor: '#002d84' }
-                }}
-              >
-                Suscribirse
-              </Button>
+            <Box>
+              <Typography variant="body2" sx={{ 
+                fontStyle: 'italic',
+                mb: 1
+              }}>
+                Horario de oficina
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 2 }}>
+                de lunes a viernes de 9:00 a 18:00
+              </Typography>
+              <Typography variant="body2" sx={{ 
+                textDecoration: 'underline',
+                fontStyle: 'italic'
+              }}>
+                Servicio técnico las 24 horas
+              </Typography>
             </Box>
           </Box>
         </Box>

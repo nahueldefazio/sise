@@ -14,26 +14,21 @@ export async function POST(request) {
 
     // Configura Nodemailer (ejemplo con Gmail)
     const transporter = nodemailer.createTransport({
-      host: 'c2800893.ferozo.com',
-      port: 465,
-      secure: true, // SSL
+      host: 'mail.sise.com.ar',  // Changed host
+      port: 587,  // Changed port to standard SMTP
+      secure: false,  // Changed to false for STARTTLS
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD // Usa contraseña de aplicación
+        pass: process.env.EMAIL_PASSWORD
       },
       tls: {
-        rejectUnauthorized: true,
-      },
-      // dkim: {
-      //   domainName: 'sise.com.ar',
-      //   keySelector: 'google', // Mismo que en DNS
-      //   privateKey: process.env.DKIM_PRIVATE_KEY
-      // }
+        rejectUnauthorized: false
+      }
     });
 
     await transporter.sendMail({
       from: '"SISE Notificaciones" <notificaciones@sise.com.ar>', // Email corporativo
-      to: 'nahuel1116xx@gmail.com',
+      to: 'info@sise.com.ar',
       subject: `[SISE] Nueva consulta de ${name}`,
       text: `Mensaje en texto plano\n\n${message}`, // Versión alternativa
       html: `
@@ -68,6 +63,8 @@ export async function POST(request) {
       { status: 200, headers }
     );
   } catch (error) {
+    console.log(error);
+    
     return NextResponse.json(
       { error: 'Error al enviar el mensaje' },
       { status: 500, headers }

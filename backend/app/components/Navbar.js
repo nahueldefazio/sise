@@ -37,7 +37,11 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" sx={{ 
+      backgroundColor: 'rgba(0, 0, 0, 0.95)',
+      backdropFilter: 'blur(8px)',
+      boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+    }}>
       <Toolbar sx={{color: "yellow"}} >
         <Link href="/" passHref>
           <Box
