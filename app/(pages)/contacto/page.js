@@ -103,147 +103,45 @@ function Contacto() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 8, minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <Fade in timeout={1000}>
-        <Typography 
-          variant="h2" 
-          component="h1" 
-          gutterBottom 
-          align="center" 
-          sx={{ 
-            mb: 8,
-            fontWeight: 500,
-            color: 'primary.main'
-          }}
-        >
-          Contacto
-        </Typography>
-      </Fade>
+    <Container maxWidth={false} sx={{ 
+      py: 8, 
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      justifyContent: 'center',
+      width: '100vw',
+      marginLeft: 'calc(-50vw + 50%)',
+      marginRight: 'calc(-50vw + 50%)',
+      backgroundImage: 'url("./images/home/contact.avif")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      alignItems: 'center',
+    }}>
+          
 
       <Grid container spacing={4} justifyContent="center">
-        <Grid item xs={12} sm={10} md={6}>
-          <Zoom in timeout={800}>
-            <Paper elevation={3} sx={{ 
-              p: 4,
-              height: '100%',
-              borderRadius: 2,
-              background: 'linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%)',
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                transform: 'translateY(-4px)',
-                boxShadow: 8
-              }
-            }}>
-              <Typography variant="h5" gutterBottom color="primary" sx={{ mb: 4, fontWeight: 500 }}>
-                Información de Contacto
-              </Typography>
-
-              {/* Contact sections with enhanced animations */}
-              {/* WhatsApp */}
-              <Box sx={{ mb: 4 }}>
-                <Link 
-                  href="https://wa.me/XXXXXXXXXXX" 
-                  target="_blank" 
-                  sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center',
-                    color: '#25D366',
-                    textDecoration: 'none',
-                    '&:hover': { textDecoration: 'underline' }
-                  }}
-                >
-                  <WhatsAppIcon sx={{ fontSize: 40, mr: 2 }} />
-                  <Typography variant="h5">WhatsApp</Typography>
-                </Link>
-                <Typography variant="body1" sx={{ ml: 6 }}>+54 XX XXXX-XXXX</Typography>
-              </Box>
-  
-              {/* Phone */}
-              <Box sx={{ mb: 3 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                  <PhoneIcon sx={{ mr: 2 }} />
-                  <Typography variant="h6">Teléfono</Typography>
-                </Box>
-                <Typography variant="body1" sx={{ ml: 6 }}>011-3221-5517</Typography>
-              </Box>
-  
-              {/* Email Addresses */}
-              <Box sx={{ mb: 3 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                  <EmailIcon sx={{ mr: 2 }} />
-                  <Typography variant="h6">Correo Electrónico</Typography>
-                </Box>
-                <Box sx={{ ml: 6 }}>
-                  <Typography variant="body1">Info: info@sise.com.ar</Typography>
-                  <Typography variant="body1">Administración: administracion@sise.com.ar</Typography>
-                  <Typography variant="body1">Ventas: ventas@sise.com.ar</Typography>
-                </Box>
-              </Box>
-  
-              {/* Social Media */}
-              <Box>
-                <Typography variant="h6" gutterBottom>Redes Sociales</Typography>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                  <Link 
-                    href="https://www.facebook.com/sise.com.ar" 
-                    target="_blank" 
-                    sx={{ 
-                      color: '#1877F2',
-                      '&:hover': { 
-                        transform: 'scale(1.1)',
-                        transition: 'transform 0.2s'
-                      }
-                    }}
-                  >
-                    <FacebookIcon sx={{ fontSize: 40 }} />
-                  </Link>
-                  <Link 
-                    href="https://www.instagram.com/sise_seguridad" 
-                    target="_blank" 
-                    sx={{ 
-                      color: '#E4405F',
-                      '&:hover': { 
-                        transform: 'scale(1.1)',
-                        transition: 'transform 0.2s'
-                      }
-                    }}
-                  >
-                    <InstagramIcon sx={{ fontSize: 40 }} />
-                  </Link>
-                  <Link 
-                    href="https://www.tiktok.com/@sise.com.ar" 
-                    target="_blank" 
-                    sx={{ 
-                      color: '#000000',
-                      '&:hover': { 
-                        transform: 'scale(1.1)',
-                        transition: 'transform 0.2s'
-                      }
-                    }}
-                  >
-                    <TikTokIcon sx={{ fontSize: 40 }} />
-                  </Link>
-                </Box>
-              </Box>
-            </Paper>
-          </Zoom>
-        </Grid>
-
-        <Grid item xs={12} sm={10} md={6}>
+        <Grid item xs={12} md={6}>
           <Zoom in timeout={1000}>
-            <Paper elevation={3} sx={{ 
+            <Box sx={{ 
               p: 4,
-              height: '100%',
-              borderRadius: 2,
-              background: 'linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%)',
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                transform: 'translateY(-4px)',
-                boxShadow: 8
-              }
+              borderRadius: '16px',
+              background: 'rgba(0, 0, 0, 0.7)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.18)',
             }}>
-              <Typography variant="h5" gutterBottom color="primary" sx={{ mb: 4, fontWeight: 500 }}>
-                Envíanos un mensaje
+              <Typography variant="h4" gutterBottom align="center" sx={{ 
+                color: '#FFD700',
+                mb: 4,
+                fontWeight: 'bold'
+              }}>
+               Más información
+              </Typography>
+              <Typography variant="body1" align="center" sx={{ 
+                color: 'white',
+                mb: 4 
+              }}>
+                Para proteger y controlar tu negocio te ofrecemos un sistema de intrusión a medida, solo tenés que dejarnos tus datos y nos estaremos comunicando para contarte en cómo podemos ayudarte
               </Typography>
               <Box 
                 component="form" 
@@ -258,38 +156,80 @@ function Contacto() {
                 <TextField
                   fullWidth
                   name="name"
-                  label="Nombre"
+                  placeholder="Nombre"
                   variant="outlined"
                   error={!!errors.name}
                   helperText={errors.name}
                   onBlur={handleBlur}
                   disabled={isSubmitting}
+                  InputProps={{
+                    sx: {
+                      color: 'white',
+                      '& input::placeholder': {
+                        color: '#FFD700',
+                        opacity: 0.7
+                      },
+                      '& fieldset': { borderColor: errors.name ? 'error.main' : '#FFD700' },
+                      '&:hover fieldset': { borderColor: errors.name ? 'error.main' : '#FFD700' },
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      '&.Mui-disabled': {
+                        color: 'white',
+                        opacity: 0.7
+                      }
+                    }
+                  }}
+                  FormHelperTextProps={{
+                    sx: { color: 'error.main' }
+                  }}
                 />
                 <TextField
                   fullWidth
                   name="email"
-                  label="Email"
-                  type="email"
+                  placeholder="Correo Electrónico"
                   variant="outlined"
                   error={!!errors.email}
                   helperText={errors.email}
                   onBlur={handleBlur}
                   disabled={isSubmitting}
+                  InputProps={{
+                    sx: {
+                      color: '#FFD700',
+                      borderColor: '#FFD700',
+                      '& fieldset': { borderColor: errors.email ? 'error.main' : '#FFD700' },
+                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    }
+                  }}
+                  FormHelperTextProps={{
+                    sx: { color: 'error.main' }
+                  }}
                 />
                 <TextField
                   fullWidth
                   name="phone"
-                  label="Teléfono"
+                  placeholder="Teléfono"
                   variant="outlined"
                   error={!!errors.phone}
                   helperText={errors.phone}
                   onBlur={handleBlur}
                   disabled={isSubmitting}
+                  InputProps={{
+                    sx: {
+                      color: '#FFD700',
+                      borderColor: '#FFD700',
+                      '& fieldset': { borderColor: errors.phone ? 'error.main' : '#FFD700' },
+                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    }
+                  }}
+                  FormHelperTextProps={{
+                    sx: { color: 'error.main' }
+                  }}
                 />
                 <TextField
                   fullWidth
                   name="message"
-                  label="Mensaje"
+                  placeholder="Mensaje"
                   multiline
                   rows={4}
                   variant="outlined"
@@ -297,38 +237,106 @@ function Contacto() {
                   helperText={errors.message}
                   onBlur={handleBlur}
                   disabled={isSubmitting}
+                  InputProps={{
+                    sx: {
+                      color: 'white',
+                      '& textarea::placeholder': {
+                        color: '#FFD700',
+                        opacity: 0.7
+                      },
+                      '& fieldset': { borderColor: errors.message ? 'error.main' : '#FFD700' },
+                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      '&.Mui-disabled': {
+                        color: 'white',
+                        opacity: 0.7
+                      }
+                    }
+                  }}
+                  FormHelperTextProps={{
+                    sx: { color: 'error.main' }
+                  }}
                 />
                 <Button 
                   type="submit"
                   variant="contained"
-                  color="primary"
                   size="large"
                   disabled={isSubmitting}
                   sx={{ 
                     mt: 2,
                     py: 1.5,
-                    background: theme => `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.primary.light} 90%)`,
-                    transition: 'all 0.3s ease',
+                    backgroundColor: '#FFD700',
+                    color: 'black',
+                    fontWeight: 'bold',
                     '&:hover': {
-                      transform: 'scale(1.02)',
-                      boxShadow: 4
+                      backgroundColor: '#FFD700',
+                      opacity: 0.9
+                    },
+                    '&.Mui-disabled': {
+                      backgroundColor: '#FFD700',
+                      opacity: 0.7,
+                      color: 'rgba(0, 0, 0, 0.7)'
                     }
                   }}
                 >
                   {isSubmitting ? (
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <CircularProgress size={20} color="inherit" sx={{ mr: 1 }} />
-                      Enviando...
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CircularProgress size={20} sx={{ color: 'black' }} />
+                      <span>Enviando...</span>
                     </Box>
                   ) : (
-                    'ENVIAR MENSAJE'
+                    'Enviar'
                   )}
                 </Button>
               </Box>
-            </Paper>
+            </Box>
           </Zoom>
         </Grid>
       </Grid>
+      <Slide direction="left" in timeout={1200}>
+              <Box sx={{
+                 display: 'flex', 
+                 alignItems: 'center',
+                 flexDirection: 'column',
+                 p: 2,
+                 borderRadius: 2,
+                 bgcolor: 'background.paper',
+                 boxShadow: 1,
+                 transition: 'transform 0.3s ease',
+                 '&:hover': {
+                   transform: 'translateX(10px)'
+                 },
+                 background: 'linear-gradient(135deg, #0D0D0D, #1C1C1C)',
+                 background: 'rgba(0, 5, 5, 0.25);', /* fondo semitransparente */
+                 borderRadius: '16px',
+                 padding: '2rem',
+                 color: 'white',
+                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
+                 backdropFilter: 'blur(10px)',/* <- el efecto de vidrio */
+                 border: '1px solid rgba(255, 255, 255, 0.18)',
+                 textAlign: 'center',
+                 marginTop: '2rem',
+              }}>
+                <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }}>
+                  ¿Por qué elegirnos?
+                </Typography>
+                <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
+                En SISE ofrecemos soluciones de seguridad personalizadas y efectivas. Contamos con un equipo técnico con más de 20 años de experiencia y utilizamos tecnología de vanguardia.                </Typography>
+                <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
+                Te asesoramos para diseñar e instalar sistemas a medida, preservando la estética del espacio y utilizando equipamiento de marcas líderes en el rubro.                </Typography>
+                <Typography variant="body1" align="center" sx={{ maxWidth: '900px', mx: 'auto' }}>
+                <Button 
+                      variant="contained" 
+                      color="primary" 
+                      size="large" 
+                      href="/nosotros"
+                      sx={{ mt: 2 }}
+                    >
+                      Nosotros
+                    </Button>                
+                </Typography>
+              </Box>
+            </Slide>
 
       <Snackbar
         open={openSnackbar}

@@ -1,16 +1,18 @@
 "use client";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Container, Typography, Grid, Box, Button, Fade, Slide, Zoom } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Fab } from '@mui/material';
 
 function Inicio() {
   const items = [
     {
-      img: " images/home/home1.avif",
-      alt: "Sistemas de Seguridad",
-      title: "Sistemas de Seguridad",
-      description: "Protegemos lo que más te importa"
+      img: "/images/home/sise3.jpg", // Make sure to save the image with this path
+      alt: "Propiedad monitoreada las 24hs",
+      title: "Monitoreo 24/7",
+      description: "Servicios Integrales en Seguridad Electronica"
     },
     {
       img: "/images/home/cam1.jpg",
@@ -23,12 +25,29 @@ function Inicio() {
       alt: "Alarmas Residenciales",
       title: "Alarmas Residenciales",
       description: "Instalacion de alarmas de seguridad"
-    }
+    },    
   ];
 
   const [ref1, inView1] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ref2, inView2] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ref3, inView3] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <Box component="main" sx={{ overflow: 'hidden' }}>
@@ -135,7 +154,7 @@ function Inicio() {
               py: 12,
               position: 'relative',
               borderRadius: 4,
-              mb: 8
+              
             }}>
               <Grid container spacing={6} alignItems="center">
                 <Grid item xs={12} md={6}>
@@ -162,7 +181,7 @@ function Inicio() {
                       CONSTRUYE UNA
                     </Typography>
                     <img 
-                      src="/images/home/sise3.jpg" 
+                      src="/images/home/sise.jpg" 
                       alt="DSC Alarm System Components" 
                       style={{ 
                         width: '100%',
@@ -202,7 +221,18 @@ function Inicio() {
           </Box>
   
           {/* Additional Section */}
-          <Box ref={ref2} sx={{ 
+          <Box ref={ref2} sx={{
+             width: '100vw',
+             marginLeft: 'calc(-50vw + 50%)',
+             marginRight: 'calc(-50vw + 50%)',
+             py: 6,
+             backgroundImage: 'url("./images/home/home2.avif")',
+             backgroundSize: 'cover',
+             backgroundPosition: 'center',
+             backgroundAttachment: 'fixed',
+             display: 'flex',
+             justifyContent: 'center',
+             alignItems: 'center', 
             bgcolor: '#1a237e', 
             color: 'white', 
             py: 8,
@@ -212,7 +242,28 @@ function Inicio() {
             }
           }}>
             <Fade in={inView2} timeout={1000}>
-              <Container maxWidth="lg">
+              <Container maxWidth="lg"sx={{ 
+                      display: 'flex',
+                      flexDirection: "column",
+                      alignItems: 'center',
+                      p: 2,
+                      borderRadius: 2,
+                      bgcolor: 'background.paper',
+                      boxShadow: 1,
+                      transition: 'transform 0.3s ease',
+                      '&:hover': {
+                        transform: 'translateX(10px)'
+                      },
+                      background: 'linear-gradient(135deg, #0D0D0D, #1C1C1C)',
+                      background: 'rgba(0, 5, 5, 0.25);', /* fondo semitransparente */
+                      borderRadius: '16px',
+                      padding: '2rem',
+                      color: 'white',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
+                      backdropFilter: 'blur(10px)',/* <- el efecto de vidrio */
+                      border: '1px solid rgba(255, 255, 255, 0.18)',
+                      textAlign: 'center',
+                    }}>
                 <Typography variant="h3" component="h2" gutterBottom align="center">
                   Deja de preocuparte y
                 </Typography>
@@ -247,11 +298,45 @@ function Inicio() {
           </Box>
   
           {/* Camera System Section */}
-          <Container ref={ref3} maxWidth="lg" sx={{ py: 8 }}>
-            <Grid container spacing={6} alignItems="center">
+          <Container disableGutters maxWidth={false} ref={ref3} sx={{ py: 8, 
+             width: '100vw',
+             marginLeft: 'calc(-50vw + 50%)',
+             marginRight: 'calc(-50vw + 50%)',
+             py: 6,
+             backgroundImage: 'url("./images/home/home3.avif")',
+             backgroundSize: 'cover',
+             backgroundPosition: 'center',
+             display: 'flex',
+             justifyContent: 'center',
+             alignItems: 'center',
+          }}>
+            <Grid container spacing={6}>
               <Grid item xs={12} md={6}>
                 <Slide direction="right" in={inView3} timeout={1200}>
-                  <Box>
+                  <div style={{display: 'flex', justifyContent: 'center'}}>
+                  <Box  sx={{ 
+                      width: '60%',
+                      display: 'flex', 
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      p: 2,
+                      borderRadius: 2,
+                      bgcolor: 'background.paper',
+                      boxShadow: 1,
+                      transition: 'transform 0.3s ease',
+                      '&:hover': {
+                        transform: 'translateX(10px)'
+                      },
+                      background: 'linear-gradient(135deg, #0D0D0D, #1C1C1C)',
+                      background: 'rgba(0, 5, 5, 0.25);', /* fondo semitransparente */
+                      borderRadius: '16px',
+                      padding: '2rem 10rem',
+                      color: 'white',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
+                      backdropFilter: 'blur(10px)',/* <- el efecto de vidrio */
+                      border: '1px solid rgba(255, 255, 255, 0.18)',
+                      textAlign: 'center',
+                    }}>
                     <Typography variant="h3" component="h2" gutterBottom>
                       Si lo imaginas
                     </Typography>
@@ -264,7 +349,12 @@ function Inicio() {
                       ES REAL
                     </Typography>
                     <Typography variant="body1" paragraph>
-                      Gracias a la tecnología actual podrás visualizar un sistema de cámaras online desde tu notebook o smartphone donde quiera que estés, con una conexión a internet.
+                    Gracias a la tecnología actual, podrás visualizar tu sistema de cámaras en tiempo real desde cualquier lugar del mundo, simplemente con una conexión a internet. 
+                    Ya sea desde tu notebook, smartphone o tablet, tendrás acceso inmediato a las imágenes de tu hogar o empresa.
+                    </Typography>
+                    <Typography variant="body3" paragraph>
+                    Gracias a la tecnología actual, podrás visualizar tu sistema de cámaras en tiempo real desde cualquier lugar del mundo, simplemente con una conexión a internet. 
+                    Ya sea desde tu notebook, smartphone o tablet, tendrás acceso inmediato a las imágenes de tu hogar o empresa.
                     </Typography>
                     <Button 
                       variant="contained" 
@@ -276,57 +366,35 @@ function Inicio() {
                       Instalación de Cámaras
                     </Button>
                   </Box>
+                  </div>
                 </Slide>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Zoom in={inView3} timeout={1400}>
-                  <Grid container spacing={2}>
-                    {[1, 2, 3, 4].map((num) => (
-                      <Grid item xs={6} key={num}>
-                        <Box
-                          component="img"
-                          src={`/images/camera-view-${num}.jpg`}
-                          alt={`Camera View ${num}`}
-                          sx={{
-                            width: '100%',
-                            height: 'auto',
-                            borderRadius: '8px',
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                              transform: 'scale(1.1)',
-                              boxShadow: '0 10px 20px rgba(0,0,0,0.2)'
-                            }
-                          }}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Zoom>
               </Grid>
             </Grid>
           </Container>
   
           {/* Why Choose Us Section */}
-          <Container maxWidth="lg" sx={{ py: 8 }}>
-            <Slide direction="up" in timeout={1200}>
-              <Box>
-                <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }}>
-                  ¿Por qué elegirnos?
-                </Typography>
-                <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
-                  En SISE nos impulsa brindar soluciones efectivas y de manera personalizada para satisfacer cada una de las necesidades de nuestros clientes.
-                </Typography>
-                <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
-                  Somos una empresa joven con especialistas técnicos con más de 20 años de experiencia en instalaciones y puesta en marcha de sistemas electrónicos de seguridad, utilizando lo último en tecnología.
-                </Typography>
-                <Typography variant="body1" align="center" sx={{ maxWidth: '900px', mx: 'auto' }}>
-                  Nuestros especialistas te asesorarán para realizar un proyecto de instalación a medida para determinar el equipamiento más adecuado a utilizar, luego se procede a la instalación de los mismos, preservando la estética del espacio protegido dentro de tu hogar o empresa, el equipamiento consiste de marcas líderes en seguridad electrónica.
-                </Typography>
-              </Box>
-            </Slide>
-          </Container>
+         
         </Box>
       </Fade>
+      <Fab 
+        color="primary"
+        size="medium"
+        aria-label="scroll back to top"
+        onClick={scrollToTop}
+        sx={{
+          position: 'fixed',
+          bottom: 16,
+          right: 16,
+          display: showScrollTop ? 'flex' : 'none',
+          zIndex: 1000,
+          bgcolor: 'yellow',
+          '&:hover': {
+            bgcolor: 'rgba(255, 10, 10, 0.9)',
+          }
+        }}
+      >
+        <KeyboardArrowUpIcon />
+      </Fab>
     </Box>
   );
 }
