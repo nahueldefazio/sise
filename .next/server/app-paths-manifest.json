@@ -1,10 +1,7 @@
 {
   "/(pages)/camaras/page": "app/(pages)/camaras/page.js",
-  "/(pages)/contacto/page": "app/(pages)/contacto/page.js",
   "/(pages)/page": "app/(pages)/page.js",
   "/(pages)/monitoreo/page": "app/(pages)/monitoreo/page.js",
   "/(pages)/alarma/page": "app/(pages)/alarma/page.js",
-  "/(pages)/servicios/page": "app/(pages)/servicios/page.js",
-  "/(pages)/clientes/page": "app/(pages)/clientes/page.js",
   "/(pages)/nosotros/page": "app/(pages)/nosotros/page.js"
 }

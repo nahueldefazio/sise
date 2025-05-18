@@ -58,7 +58,7 @@ function Navbar() {
           >
             <Box
               component="img"
-              src="/images/logos/logo.jpg"
+              src="./images/logos/logo.jpg"
               alt="SISE - Servicios Integrados en Seguridad Electrónica"
               sx={{
                 height: '50px',

@@ -9,19 +9,19 @@ import { Fab } from '@mui/material';
 function Inicio() {
   const items = [
     {
-      img: "/images/home/sise3.jpg", // Make sure to save the image with this path
+      img: "./images/home/sise3.jpg", // Make sure to save the image with this path
       alt: "Propiedad monitoreada las 24hs",
       title: "Monitoreo 24/7",
       description: "Servicios Integrales en Seguridad Electronica"
     },
     {
-      img: "/images/home/cam1.jpg",
+      img: "./images/home/cam1.jpg",
       alt: "Monitoreo 24/7",
       title: "Monitoreo 24/7",
       description: "Atencion personalizada"
     },
     {
-      img: "/images/home/alarma1.png",
+      img: "./images/home/alarma1.png",
       alt: "Alarmas Residenciales",
       title: "Alarmas Residenciales",
       description: "Instalacion de alarmas de seguridad"
@@ -136,7 +136,7 @@ function Inicio() {
 
           {/* Existing sections with enhanced styling */}
           <Box sx={{
-            backgroundImage: 'url("/images/home/camara-de-seguridad.png")',
+            backgroundImage: 'url("./images/home/camara-de-seguridad.png")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
@@ -181,7 +181,7 @@ function Inicio() {
                       CONSTRUYE UNA
                     </Typography>
                     <img 
-                      src="/images/home/sise.jpg" 
+                      src="./images/home/sise.jpg" 
                       alt="DSC Alarm System Components" 
                       style={{ 
                         width: '100%',
