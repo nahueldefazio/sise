@@ -1,5 +1,7 @@
+"use client"
 import React from 'react';
-import { Container, Typography, Grid, Paper, Box } from '@mui/material';
+import { Container, Typography, Grid, Paper, Box, Fade, Zoom } from '@mui/material';
+import { useInView } from 'react-intersection-observer';
 
 const clientLogos = [
   {
@@ -25,52 +27,115 @@ const clientLogos = [
 ];
 
 function Clientes() {
-  return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography 
-        variant="h2" 
-        component="h1" 
-        gutterBottom 
-        align="center"
-        sx={{ mb: 6 }}
-      >
-        Instituciones y empresas que confían en nuestros servicios
-      </Typography>
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
-      <Grid container spacing={4} justifyContent="center">
-        {clientLogos.map((logo) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={logo.id}>
-            <Paper 
-              elevation={3}
+  return (
+    <Box sx={{ 
+      background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
+      minHeight: '100vh',
+      py: 8,
+      color: 'white'
+    }}>
+      <Container maxWidth="lg">
+        <Fade in timeout={1000}>
+          <Box>
+            <Box sx={{ 
+              mb: 2,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1
+            }}>
+              <Typography variant="body1" component="span" sx={{ color: '#FFD700' }}>
+                Inicio
+              </Typography>
+              <Typography variant="body1" component="span" sx={{ color: '#FFD700' }}>
+                {' > '}
+              </Typography>
+              <Typography variant="body1" component="span" sx={{ color: '#FFD700', fontWeight: 'bold' }}>
+                Clientes
+              </Typography>
+            </Box>
+
+            <Typography 
+              variant="h2" 
+              component="h1" 
+              gutterBottom 
+              align="center"
               sx={{
-                p: 4,
-                height: '200px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#fff',
-                transition: 'transform 0.3s ease-in-out',
-                '&:hover': {
-                  transform: 'scale(1.05)',
-                }
+                mb: 8,
+                fontWeight: 'bold',
+                background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+                letterSpacing: '2px'
               }}
             >
-              <Box
-                component="img"
-                src={logo.src}
-                alt={logo.alt}
-                sx={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
-                  objectFit: 'contain',
-                  padding: 2
-                }}
-              />
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+              Empresas que Confían en Nosotros
+            </Typography>
+
+            <Grid container spacing={4} justifyContent="center" ref={ref}>
+              {clientLogos.map((logo, index) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={logo.id}>
+                  <Zoom in={inView} style={{ transitionDelay: `${index * 200}ms` }}>
+                    <Paper 
+                      elevation={3}
+                      sx={{
+                        p: 4,
+                        height: '200px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        backdropFilter: 'blur(10px)',
+                        borderRadius: '16px',
+                        border: '1px solid rgba(255, 255, 255, 0.18)',
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          transform: 'translateY(-10px)',
+                          background: 'rgba(255, 255, 255, 0.15)',
+                          boxShadow: '0 8px 32px rgba(255, 215, 0, 0.15)',
+                        },
+                        '&::before': {
+                          content: '""',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '4px',
+                          background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
+                        }
+                      }}
+                    >
+                      <Box
+                        component="img"
+                        src={logo.src}
+                        alt={logo.alt}
+                        sx={{
+                          maxWidth: '100%',
+                          maxHeight: '100%',
+                          objectFit: 'contain',
+                          padding: 2,
+                          opacity: 0.9,
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            opacity: 1,
+                            transform: 'scale(1.05)',
+                          }
+                        }}
+                      />
+                    </Paper>
+                  </Zoom>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Fade>
+      </Container>
+    </Box>
   );
 }
 

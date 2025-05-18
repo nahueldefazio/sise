@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+// Almacén temporal en memoria para mantener registro de usuarios
+const rateLimitMap = new Map();
+
 export async function POST(request) {
-  // Configura CORS
+  // Configuración de CORS
   const headers = {
     'Access-Control-Allow-Origin': 'http://localhost:3001', // Reemplaza con la URL de tu frontend
     'Access-Control-Allow-Methods': 'POST',
@@ -10,69 +13,79 @@ export async function POST(request) {
   };
 
   try {
+    const clientIp = request.headers.get('x-forwarded-for') || 'UNKNOWN';
+    console.log(`Solicitud de contacto desde ${clientIp}`);
+    const now = Date.now();
+    const cooldownTime = 300000; // Tiempo en milisegundos (60 segundos = 1 minuto)
+
+    // Verificar si ya existe un registro para esta IP
+    if (rateLimitMap.has(clientIp)) {
+      const lastRequestTime = rateLimitMap.get(clientIp);
+
+      // Si el último intento está dentro del límite
+      if (now - lastRequestTime < cooldownTime) {
+        return NextResponse.json(
+            { error: 'Demasiadas solicitudes. Por favor, intenta más tarde.' },
+            { status: 429, headers }
+        );
+      }
+    }
+
+    // Registrar el tiempo de la solicitud actual
+    rateLimitMap.set(clientIp, now);
+
+    // Procesa la solicitud
     const { name, email, phone, message } = await request.json();
 
-    // Configura Nodemailer (ejemplo con Gmail)
+    // Configuración de Nodemailer (SMTP)
     const transporter = nodemailer.createTransport({
-      host: 'mail.sise.com.ar',  // Changed host
-      port: 587,  // Changed port to standard SMTP
-      secure: false,  // Changed to false for STARTTLS
+      host: 'mail.sise.com.ar',
+      port: 587,
+      secure: false, // Cambiar a `true` para conexiones seguras
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
+        pass: process.env.EMAIL_PASSWORD,
       },
       tls: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     });
 
+    // Enviar correo
     await transporter.sendMail({
-      from: '"SISE Notificaciones" <notificaciones@sise.com.ar>', // Email corporativo
+      from: '"SISE Notificaciones" <notificaciones@sise.com.ar>',
       to: 'info@sise.com.ar',
       subject: `[SISE] Nueva consulta de ${name}`,
-      text: `Mensaje en texto plano\n\n${message}`, // Versión alternativa
+      text: `Mensaje:\n\n${message}`,
       html: `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset="utf-8">
-          <title>Nueva consulta</title>
-        </head>
-        <body style="font-family: Arial, sans-serif;">
-          <h2 style="color: #1a5276;">Consulta desde formulario web</h2>
-          <p><strong>Cliente:</strong> ${name}</p>
-          <p><strong>Contacto:</strong> ${email} | ${phone || 'Sin teléfono'}</p>
-          <div style="background-color: #f8f9fa; padding: 15px; margin-top: 10px;">
-            ${message.replace(/\n/g, '<br>')}
-          </div>
-          <p style="font-size: 12px; color: #7f8c8d; margin-top: 20px;">
-            Este mensaje fue generado automáticamente. No responder directamente.
-          </p>
-        </body>
-        </html>
+        <div>
+          <h2>Nueva consulta</h2>
+          <p>Nombre: ${name}</p>
+          <p>Email: ${email}</p>
+          <p>Teléfono: ${phone || 'Sin teléfono'}</p>
+          <p>Mensaje:</p>
+          <p>${message.replace(/\n/g, '<br>')}</p>
+        </div>
       `,
-      headers: {
-        'X-Priority': '1',
-        'X-Mailer': 'Nodemailer',
-        'List-Unsubscribe': '<mailto:unsubscribe@sise.com.ar>'
-      }
     });
 
+    // Respuesta exitosa
     return NextResponse.json(
-      { success: true },
-      { status: 200, headers }
+        { success: true },
+        { status: 200, headers }
     );
   } catch (error) {
-    console.log(error);
-    
+    console.error('Error al enviar el correo:', error);
+
+    // Respuesta de error
     return NextResponse.json(
-      { error: 'Error al enviar el mensaje' },
-      { status: 500, headers }
+        { error: 'Hubo un error al procesar tu solicitud.' },
+        { status: 500, headers }
     );
   }
 }
 
-// ¡Importante! Agrega esto para manejar preflight CORS
+// Manejo de CORS para preflight OPTIONS
 export async function OPTIONS() {
   return NextResponse.json({}, {
     headers: {

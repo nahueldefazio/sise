@@ -1,13 +1,7 @@
 "use client"
 import React from 'react'; // Añade esta línea
-import { Container, Typography, Paper, Grid, Box, Link, TextField, Button, Snackbar, Alert } from '@mui/material';
-import { CircularProgress, Fade, Zoom, Slide } from '@mui/material';  // Updated imports
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TikTokIcon from '@mui/icons-material/MusicVideo'; // Using MusicVideo as TikTok icon
+import { Container, Typography, Grid, Box, TextField, Button, Snackbar, Alert } from '@mui/material';
+import { CircularProgress, Zoom, Slide } from '@mui/material';  // Updated imports
 import { useState } from 'react';
 import { validateEmail, validateName, validatePhone, validateMessage } from '../../utils/validations';
 

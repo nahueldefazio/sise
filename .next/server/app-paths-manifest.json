@@ -1,9 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/contact/route": "app/api/contact/route.js",
-  "/(pages)/camaras/page": "app/(pages)/camaras/page.js",
-  "/(pages)/alarma/page": "app/(pages)/alarma/page.js",
-  "/(pages)/monitoreo/page": "app/(pages)/monitoreo/page.js",
-  "/(pages)/contacto/page": "app/(pages)/contacto/page.js",
-  "/(pages)/nosotros/page": "app/(pages)/nosotros/page.js"
+  "/api/contact/route": "app/api/contact/route.js"
 }

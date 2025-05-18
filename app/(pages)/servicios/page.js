@@ -81,13 +81,31 @@ function Servicios() {
 
   return (
     <Box sx={{ 
-      background: 'linear-gradient(145deg, #f5f5f5 0%, #ffffff 100%)',
+      background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)', // Dark gradient background
       minHeight: '100vh',
-      py: 8
+      py: 8,
+      color: 'white'
     }}>
       <Container maxWidth="lg">
         <Fade in timeout={1000}>
           <Box>
+            <Box sx={{ 
+              mb: 2,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1
+            }}>
+              <Typography variant="body1" component="span" sx={{ color: '#FFD700' }}>
+                Inicio
+              </Typography>
+              <Typography variant="body1" component="span" sx={{ color: '#FFD700' }}>
+                {' > '}
+              </Typography>
+              <Typography variant="body1" component="span" sx={{ color: '#FFD700', fontWeight: 'bold' }}>
+                Servicios
+              </Typography>
+            </Box>
+
             <Typography 
               variant="h2" 
               component="h1" 
@@ -96,9 +114,11 @@ function Servicios() {
               sx={{
                 mb: 6,
                 fontWeight: 'bold',
-                background: 'linear-gradient(45deg, #1a237e 30%, #0d47a1 90%)',
+                background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
                 WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
+                WebkitTextFillColor: 'transparent',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+                letterSpacing: '2px'
               }}
             >
               Nuestros Servicios
@@ -117,12 +137,18 @@ function Servicios() {
                         flexDirection: 'column',
                         position: 'relative',
                         overflow: 'hidden',
-                        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                        transition: 'all 0.3s ease',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        backdropFilter: 'blur(10px)',
+                        borderRadius: '16px',
+                        border: '1px solid rgba(255, 255, 255, 0.18)',
                         '&:hover': {
                           transform: 'translateY(-10px)',
-                          boxShadow: '0 12px 20px rgba(0,0,0,0.1)',
+                          background: 'rgba(255, 255, 255, 0.15)',
+                          boxShadow: '0 8px 32px rgba(255, 215, 0, 0.15)',
                           '& .service-icon': {
-                            transform: 'scale(1.1)',
+                            transform: 'scale(1.1) rotate(10deg)',
+                            color: '#FFD700'
                           }
                         },
                         '&::before': {
@@ -132,30 +158,30 @@ function Servicios() {
                           left: 0,
                           width: '100%',
                           height: '4px',
-                          background: 'linear-gradient(45deg, #1a237e 30%, #0d47a1 90%)',
+                          background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
                         }
                       }}
                     >
                       <Box sx={{ 
                         display: 'flex', 
                         alignItems: 'center', 
-                        mb: 2,
+                        mb: 3,
                         gap: 2
                       }}>
                         <Box className="service-icon" sx={{ 
-                          color: 'primary.main',
-                          transition: 'transform 0.3s ease',
+                          color: 'rgba(255, 215, 0, 0.8)',
+                          transition: 'all 0.3s ease',
                           '& > svg': {
-                            fontSize: 40
+                            fontSize: 48
                           }
                         }}>
                           {serviceIcons[service.title]}
                         </Box>
                         <Typography 
                           variant="h5" 
-                          color="primary"
                           sx={{ 
                             fontWeight: 'bold',
+                            color: '#FFD700',
                             flex: 1
                           }}
                         >
@@ -165,8 +191,9 @@ function Servicios() {
                       <Typography 
                         variant="body1"
                         sx={{ 
-                          color: 'text.secondary',
-                          lineHeight: 1.7
+                          color: 'rgba(255, 255, 255, 0.9)',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem'
                         }}
                       >
                         {service.content}
