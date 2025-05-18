@@ -365,6 +365,19 @@ function Inicio() {
                     >
                       Instalación de Cámaras
                     </Button>
+
+                    <img 
+                      src="./images/home/sise2.jpg" 
+                      alt="DSC Alarm System Components" 
+                      style={{ 
+                        width: '100%',
+                        height: 'auto',
+                        display: 'block',
+                        margin: '0 auto',
+                        borderRadius: '20px',
+                        marginTop: '30px',
+                      }}
+                    />
                   </Box>
                   </div>
                 </Slide>

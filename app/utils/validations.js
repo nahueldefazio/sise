@@ -8,6 +8,7 @@ export const validateName = (name) => {
 };
 
 export const validatePhone = (phone) => {
+  console.log(phone);
   const regex = /^[0-9\s-+()]{8,}$/;
   return regex.test(phone);
 };
