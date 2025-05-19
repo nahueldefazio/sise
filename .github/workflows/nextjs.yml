@@ -76,6 +76,8 @@ jobs:
       - name: Build with Next.js (build + export)
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} next build
+      - name: Create .nojekyll file
+        run: touch out/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
