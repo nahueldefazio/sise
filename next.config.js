@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
+const isProduction = process.env.NODE_ENV === 'production';
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+
 const nextConfig = {
   // Enable static exports for GitHub Pages deployment
   output: 'export',
-  // Set basePath to match the repository name for GitHub Pages
-  basePath: '/sise',
-  // Set assetPrefix to match basePath for GitHub Pages
-  assetPrefix: '/sise',
+  // Set basePath and assetPrefix conditionally based on environment
+  basePath: isGitHubPages ? '/sise' : '',
+  assetPrefix: isGitHubPages ? '/sise' : '',
 
   // Image optimization configuration
   images: {
