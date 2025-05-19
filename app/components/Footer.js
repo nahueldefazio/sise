@@ -5,7 +5,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useState } from 'react';
 import { validateEmail, validateName } from '../utils/validations';
-import { getNavPath, getApiUrl } from '../utils/getNavPath';
+import { getNavPath, getNonNavbarPath, getApiUrl } from '../utils/getNavPath';
 
 function Footer() {
   const [errors, setErrors] = useState({});
@@ -74,7 +74,7 @@ function Footer() {
               de protegerlos y seguir dándoles la seguridad a sus seres queridos y sus bienes.
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              Conocé nuestras <Link href={getNavPath("/politicas-de-privacidad")} sx={{ 
+              Conocé nuestras <Link href={getNonNavbarPath("/politicas-de-privacidad")} sx={{ 
                 color: '#FDEC06', 
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' }

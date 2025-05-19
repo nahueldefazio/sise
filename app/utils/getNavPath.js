@@ -1,14 +1,22 @@
 // Utility function to handle navigation paths for GitHub Pages deployment
+// This function is used for navbar links
 export function getNavPath(path) {
+  // For navbar links, we don't modify the path
+  return path;
+}
+
+// Utility function to handle navigation paths for non-navbar buttons
+// This function is used for buttons that are NOT in the navbar
+export function getNonNavbarPath(path) {
   // Check if we're in GitHub Pages environment
   const isGitHubPages = process.env.NEXT_PUBLIC_GITHUB_PAGES === 'true';
-  
+
   // If we're in GitHub Pages, prepend the base path (/sise)
   // Only prepend if the path starts with a slash and doesn't already include the base path
   if (isGitHubPages && path.startsWith('/') && !path.startsWith('/sise/')) {
     return `/sise${path}`;
   }
-  
+
   // Otherwise, return the original path
   return path;
 }
@@ -21,7 +29,7 @@ export function getApiUrl(endpoint) {
     const cleanEndpoint = endpoint.startsWith('/') ? endpoint.substring(1) : endpoint;
     return `/${cleanEndpoint}`;
   }
-  
+
   // In development, use localhost
   return `http://localhost:3001/${endpoint.startsWith('/') ? endpoint.substring(1) : endpoint}`;
 }
