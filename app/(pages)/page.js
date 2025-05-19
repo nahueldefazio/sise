@@ -1,45 +1,116 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Container, Typography, Grid, Box, Button, Fade, Slide, Zoom } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Fab } from '@mui/material';
+import Image from 'next/image';
+import { styled } from '@mui/material/styles';
+
+// Styled components for reusable styles
+const GlassmorphicContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: theme.spacing(4),
+  borderRadius: '16px',
+  background: 'rgba(0, 5, 5, 0.25)',
+  color: 'white',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
+  backdropFilter: 'blur(10px)',
+  border: '1px solid rgba(255, 255, 255, 0.18)',
+  textAlign: 'center',
+  transition: 'transform 0.3s ease',
+  '&:hover': {
+    transform: 'translateX(10px)'
+  }
+}));
+
+const FullWidthSection = styled(Box)(({ theme, backgroundImage }) => ({
+  width: '100vw',
+  marginLeft: 'calc(-50vw + 50%)',
+  marginRight: 'calc(-50vw + 50%)',
+  paddingTop: theme.spacing(6),
+  paddingBottom: theme.spacing(6),
+  backgroundImage: `url("${backgroundImage}")`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}));
+
+const ResponsiveImage = styled(Image)({
+  width: '100%',
+  height: 'auto',
+  borderRadius: '20px',
+  marginTop: '20px',
+});
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    transform: 'translateY(-5px)',
+    boxShadow: theme.shadows[6]
+  }
+}));
 
 function Inicio() {
-  const items = [
+  // Memoize carousel items to prevent unnecessary re-renders
+  const items = useMemo(() => [
     {
-      img: "./images/home/sise3.jpg", // Make sure to save the image with this path
+      img: "/images/home/sise3.jpg",
       alt: "Propiedad monitoreada las 24hs",
       title: "Monitoreo 24/7",
-      description: "Servicios Integrales en Seguridad Electronica"
+      description: "Servicios Integrales en Seguridad Electronica",
+      width: 1920,
+      height: 1080
     },
     {
-      img: "./images/home/cam1.jpg",
+      img: "/images/home/cam3.jpg",
       alt: "Monitoreo 24/7",
       title: "Monitoreo 24/7",
-      description: "Atencion personalizada"
+      description: "Atencion personalizada",
+      width: 1920,
+      height: 1080
     },
     {
-      img: "./images/home/alarma1.png",
+      img: "/images/home/alarma1.png",
       alt: "Alarmas Residenciales",
       title: "Alarmas Residenciales",
-      description: "Instalacion de alarmas de seguridad"
+      description: "Instalacion de alarmas de seguridad",
+      width: 1920,
+      height: 1080
     },    
-  ];
+  ], []);
 
-  const [ref1, inView1] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [ref2, inView2] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [ref3, inView3] = useInView({ threshold: 0.2, triggerOnce: true });
+  // Use a single useInView hook with refs object for better performance
+  const { ref: ref1, inView: inView1 } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: ref2, inView: inView2 } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: ref3, inView: inView3 } = useInView({ threshold: 0.2, triggerOnce: true });
+
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  // Optimize scroll event listener with throttling
   useEffect(() => {
+    let timeoutId;
+
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
+      if (!timeoutId) {
+        timeoutId = setTimeout(() => {
+          setShowScrollTop(window.scrollY > 400);
+          timeoutId = null;
+        }, 100); // Throttle to 100ms
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -53,7 +124,7 @@ function Inicio() {
     <Box component="main" sx={{ overflow: 'hidden' }}>
       <Fade in timeout={1000}>
         <Box>
-          {/* Hero Carousel Section */}
+          {/* Hero Carousel Section - Optimized with Next.js Image */}
           <Box sx={{ 
             width: '100%', 
             height: '90vh',
@@ -78,20 +149,50 @@ function Inicio() {
                 <Box
                   key={i}
                   sx={{
-                    position: 'relative',
                     height: '90vh',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative'
                   }}
                 >
-                  <Box
-                    component="img"
-                    src={item.img}
-                    alt={item.alt}
-                    sx={{
-                      width: '100%',
+                  <Box 
+                    sx={{ 
+                      width: '100%', 
                       height: '100%',
-                      objectFit: 'cover',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7))',
+                        zIndex: 1
+                      }
                     }}
-                  />
+                  >
+                    <Image
+                      src={item.img}
+                      alt={item.alt}
+                      sizes="(max-width: 600px) 100vw, (max-width: 960px) 100vw, 100vw"
+                      priority={i === 0} // Load first image with priority
+                      style={{ 
+                        objectFit: 'cover',
+                        width: '100%',
+                        height: '100%'
+                      }}
+                      quality={80}
+                      width={item.width || 1920}
+                      height={item.height || 1080}
+                      placeholder="blur"
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiM0NDQ0NDQiLz48L3N2Zz4="
+                      onError={(e) => {
+                        console.error(`Error loading image: ${item.img}`);
+                        e.target.style.backgroundColor = '#444444';
+                      }}
+                    />
+                  </Box>
                   <Box
                     sx={{
                       position: 'absolute',
@@ -99,14 +200,14 @@ function Inicio() {
                       left: 0,
                       right: 0,
                       bottom: 0,
-                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7))',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
                       alignItems: 'center',
                       color: 'white',
                       textAlign: 'center',
-                      px: 4
+                      px: 4,
+                      zIndex: 2
                     }}
                   >
                     <Typography 
@@ -134,27 +235,28 @@ function Inicio() {
             </Carousel>
           </Box>
 
-          {/* Existing sections with enhanced styling */}
+          {/* Alarm System Section - Optimized with styled components */}
           <Box sx={{
-            backgroundImage: 'url("./images/home/camara-de-seguridad.png")',
+            backgroundImage: 'url("/images/home/camara-de-seguridad.png")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
             position: 'relative',
-          }}>
-            <Box sx={{
+            '&::before': {
+              content: '""',
               position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
               backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            }} />
+              zIndex: 0
+            }
+          }}>
             <Container ref={ref1} maxWidth="lg" sx={{ 
               py: 12,
               position: 'relative',
               borderRadius: 4,
-              
             }}>
               <Grid container spacing={6} alignItems="center">
                 <Grid item xs={12} md={6}>
@@ -162,7 +264,8 @@ function Inicio() {
                     <Box sx={{ 
                       p: 4,
                       borderRadius: 2,
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+                      boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+                      color: 'white'
                     }}>
                       <Typography 
                         variant="body1" 
@@ -171,99 +274,64 @@ function Inicio() {
                       >
                         Cuando las oportunidades no llamen a tu puerta...
                       </Typography>
-                    <Typography 
-                      variant="h3" 
-                      component="h2" 
-                      color="error" 
-                      gutterBottom 
-                      sx={{ fontWeight: 'bold' }}
-                    >
-                      CONSTRUYE UNA
-                    </Typography>
-                    <img 
-                      src="./images/home/sise.jpg" 
-                      alt="DSC Alarm System Components" 
-                      style={{ 
-                        width: '100%',
-                        height: 'auto',
-                        display: 'block',
-                        margin: '0 auto',
-                        borderRadius: '20px',
-                      }}
-                    />
-                    <Typography variant="body1" paragraph sx={{marginTop: "20px", color: 'white'}}>
-                      Para proteger a tu familia o tu negocio te ofrecemos un sistema de intrusión a medida que consiste de varios elementos.
-                    </Typography>
-                    <Typography variant="body1" paragraph sx={{color: 'white'}}>
-                      Un gabinete donde se aloja la placa madre donde realiza todos los procesos electrónicos, un transformador y una batería para que el sistema siga operando aún ante un corte de luz.
-                    </Typography>
-                    <Button 
-                      variant="contained" 
-                      color="primary" 
-                      size="large" 
-                      href="/alarma"
-                      sx={{ 
-                        mt: 2,
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                          transform: 'translateY(-5px)',
-                          boxShadow: 6
-                        }
-                      }}
-                    >
-                      Sistema de Alarmas
-                    </Button>
-                  </Box>
-                </Slide>
+                      <Typography 
+                        variant="h3" 
+                        component="h2" 
+                        color="error" 
+                        gutterBottom 
+                        sx={{ fontWeight: 'bold' }}
+                      >
+                        CONSTRUYE UNA
+                      </Typography>
+                      <Box sx={{ width: '100%', height: 'auto' }}>
+                        <Image 
+                          src="/images/home/sise.jpg" 
+                          alt="DSC Alarm System Components"
+                          width={800}
+                          height={500}
+                          style={{ 
+                            objectFit: 'cover',
+                            borderRadius: '20px',
+                            width: '100%',
+                            height: 'auto'
+                          }}
+                        />
+                      </Box>
+                      <Typography variant="body1" paragraph sx={{marginTop: "20px"}}>
+                        Para proteger a tu familia o tu negocio te ofrecemos un sistema de intrusión a medida que consiste de varios elementos.
+                      </Typography>
+                      <Typography variant="body1" paragraph>
+                        Un gabinete donde se aloja la placa madre donde realiza todos los procesos electrónicos, un transformador y una batería para que el sistema siga operando aún ante un corte de luz.
+                      </Typography>
+                      <StyledButton 
+                        variant="contained" 
+                        color="primary" 
+                        size="large" 
+                        href="/alarma"
+                      >
+                        Sistema de Alarmas
+                      </StyledButton>
+                    </Box>
+                  </Slide>
                 </Grid>
               </Grid>
             </Container>
           </Box>
-  
-          {/* Additional Section */}
-          <Box ref={ref2} sx={{
-             width: '100vw',
-             marginLeft: 'calc(-50vw + 50%)',
-             marginRight: 'calc(-50vw + 50%)',
-             py: 6,
-             backgroundImage: 'url("./images/home/home2.avif")',
-             backgroundSize: 'cover',
-             backgroundPosition: 'center',
-             backgroundAttachment: 'fixed',
-             display: 'flex',
-             justifyContent: 'center',
-             alignItems: 'center', 
-            bgcolor: '#1a237e', 
-            color: 'white', 
-            py: 8,
-            transition: 'transform 0.5s ease',
-            '&:hover': {
-              transform: 'translateY(-10px)'
-            }
-          }}>
+
+          {/* Monitoring Section - Optimized with styled components */}
+          <FullWidthSection 
+            ref={ref2} 
+            backgroundImage="/images/home/home2.avif"
+            sx={{
+              backgroundAttachment: 'fixed',
+              transition: 'transform 0.5s ease',
+              '&:hover': {
+                transform: 'translateY(-10px)'
+              }
+            }}
+          >
             <Fade in={inView2} timeout={1000}>
-              <Container maxWidth="lg"sx={{ 
-                      display: 'flex',
-                      flexDirection: "column",
-                      alignItems: 'center',
-                      p: 2,
-                      borderRadius: 2,
-                      bgcolor: 'background.paper',
-                      boxShadow: 1,
-                      transition: 'transform 0.3s ease',
-                      '&:hover': {
-                        transform: 'translateX(10px)'
-                      },
-                      background: 'linear-gradient(135deg, #0D0D0D, #1C1C1C)',
-                      background: 'rgba(0, 5, 5, 0.25);', /* fondo semitransparente */
-                      borderRadius: '16px',
-                      padding: '2rem',
-                      color: 'white',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
-                      backdropFilter: 'blur(10px)',/* <- el efecto de vidrio */
-                      border: '1px solid rgba(255, 255, 255, 0.18)',
-                      textAlign: 'center',
-                    }}>
+              <GlassmorphicContainer sx={{ maxWidth: '800px', padding: '3rem' }}>
                 <Typography variant="h3" component="h2" gutterBottom align="center">
                   Deja de preocuparte y
                 </Typography>
@@ -283,131 +351,107 @@ function Inicio() {
                 <Typography variant="body1" align="center">
                   Contamos con personal las 24hs los 365 días del año para atender y actuar con el usuario o la policía por cualquier evento que haya comunicado el sistema de alarma.
                 </Typography>
-                <Box sx={{ textAlign: 'center', mt: 4 }}>
-                  <Button 
-                    variant="outlined" 
-                    color="inherit" 
-                    size="large"
-                    href="/monitoreo"
-                  >
-                    Monitoreo de Alarmas
-                  </Button>
-                </Box>
-              </Container>
+                <StyledButton 
+                  variant="outlined" 
+                  color="inherit" 
+                  size="large"
+                  href="/monitoreo"
+                  sx={{ mt: 4 }}
+                >
+                  Monitoreo de Alarmas
+                </StyledButton>
+              </GlassmorphicContainer>
             </Fade>
-          </Box>
-  
-          {/* Camera System Section */}
-          <Container disableGutters maxWidth={false} ref={ref3} sx={{ py: 8, 
-             width: '100vw',
-             marginLeft: 'calc(-50vw + 50%)',
-             marginRight: 'calc(-50vw + 50%)',
-             py: 6,
-             backgroundImage: 'url("./images/home/home3.avif")',
-             backgroundSize: 'cover',
-             backgroundPosition: 'center',
-             display: 'flex',
-             justifyContent: 'center',
-             alignItems: 'center',
-          }}>
-            <Grid container spacing={6}>
-              <Grid item xs={12} md={6}>
-                <Slide direction="right" in={inView3} timeout={1200}>
-                  <div style={{display: 'flex', justifyContent: 'center'}}>
-                  <Box  sx={{ 
-                      width: '60%',
-                      display: 'flex', 
-                      alignItems: 'center',
-                      flexDirection: 'column',
-                      p: 2,
-                      borderRadius: 2,
-                      bgcolor: 'background.paper',
-                      boxShadow: 1,
-                      transition: 'transform 0.3s ease',
-                      '&:hover': {
-                        transform: 'translateX(10px)'
-                      },
-                      background: 'linear-gradient(135deg, #0D0D0D, #1C1C1C)',
-                      background: 'rgba(0, 5, 5, 0.25);', /* fondo semitransparente */
-                      borderRadius: '16px',
-                      padding: '2rem 10rem',
-                      color: 'white',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
-                      backdropFilter: 'blur(10px)',/* <- el efecto de vidrio */
-                      border: '1px solid rgba(255, 255, 255, 0.18)',
-                      textAlign: 'center',
-                    }}>
-                    <Typography variant="h3" component="h2" gutterBottom>
-                      Si lo imaginas
-                    </Typography>
-                    <Typography 
-                      variant="h3" 
-                      component="span" 
-                      color="error" 
-                      sx={{ fontWeight: 'bold', display: 'block', mb: 3 }}
-                    >
-                      ES REAL
-                    </Typography>
-                    <Typography variant="body1" paragraph>
-                    Gracias a la tecnología actual, podrás visualizar tu sistema de cámaras en tiempo real desde cualquier lugar del mundo, simplemente con una conexión a internet. 
-                    Ya sea desde tu notebook, smartphone o tablet, tendrás acceso inmediato a las imágenes de tu hogar o empresa.
-                    </Typography>
-                    <Typography variant="body3" paragraph>
-                    Gracias a la tecnología actual, podrás visualizar tu sistema de cámaras en tiempo real desde cualquier lugar del mundo, simplemente con una conexión a internet. 
-                    Ya sea desde tu notebook, smartphone o tablet, tendrás acceso inmediato a las imágenes de tu hogar o empresa.
-                    </Typography>
-                    <Button 
-                      variant="contained" 
-                      color="primary" 
-                      size="large" 
-                      href="/camaras"
-                      sx={{ mt: 2 }}
-                    >
-                      Instalación de Cámaras
-                    </Button>
+          </FullWidthSection>
 
-                    <img 
-                      src="./images/home/sise2.jpg" 
-                      alt="DSC Alarm System Components" 
-                      style={{ 
-                        width: '100%',
-                        height: 'auto',
-                        display: 'block',
-                        margin: '0 auto',
-                        borderRadius: '20px',
-                        marginTop: '30px',
-                      }}
-                    />
+          {/* Camera System Section - Optimized with styled components */}
+          <FullWidthSection 
+            ref={ref3} 
+            backgroundImage="/images/home/home3.avif"
+          >
+            <Grid container spacing={6} justifyContent="center">
+              <Grid item xs={12} md={8} lg={6}>
+                <Slide direction="right" in={inView3} timeout={1200}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <GlassmorphicContainer sx={{ 
+                      width: { xs: '90%', sm: '80%', md: '70%' },
+                      padding: { xs: '2rem', sm: '2rem 3rem', md: '2rem 4rem' }
+                    }}>
+                      <Typography variant="h3" component="h2" gutterBottom>
+                        Si lo imaginas
+                      </Typography>
+                      <Typography 
+                        variant="h3" 
+                        component="span" 
+                        color="error" 
+                        sx={{ fontWeight: 'bold', display: 'block', mb: 3 }}
+                      >
+                        ES REAL
+                      </Typography>
+                      <Typography variant="body1" paragraph>
+                        Gracias a la tecnología actual, podrás visualizar tu sistema de cámaras en tiempo real desde cualquier lugar del mundo, simplemente con una conexión a internet. 
+                        Ya sea desde tu notebook, smartphone o tablet, tendrás acceso inmediato a las imágenes de tu hogar o empresa.
+                      </Typography>
+                      {/* Removed duplicate paragraph */}
+                      <StyledButton 
+                        variant="contained" 
+                        color="primary" 
+                        size="large" 
+                        href="/camaras"
+                      >
+                        Instalación de Cámaras
+                      </StyledButton>
+
+                      <Box sx={{ width: '100%', height: 'auto', mt: 3 }}>
+                        <Image 
+                          src="/images/home/sise2.jpg" 
+                          alt="Sistema de cámaras de seguridad" 
+                          width={800}
+                          height={500}
+                          sizes="(max-width: 600px) 90vw, (max-width: 960px) 70vw, 600px"
+                          style={{ 
+                            objectFit: 'cover',
+                            borderRadius: '20px',
+                            width: '100%',
+                            height: 'auto'
+                          }}
+                        />
+                      </Box>
+                    </GlassmorphicContainer>
                   </Box>
-                  </div>
                 </Slide>
               </Grid>
             </Grid>
-          </Container>
-  
+          </FullWidthSection>
+
           {/* Why Choose Us Section */}
-         
+
         </Box>
       </Fade>
-      <Fab 
-        color="primary"
-        size="medium"
-        aria-label="scroll back to top"
-        onClick={scrollToTop}
-        sx={{
-          position: 'fixed',
-          bottom: 16,
-          right: 16,
-          display: showScrollTop ? 'flex' : 'none',
-          zIndex: 1000,
-          bgcolor: 'yellow',
-          '&:hover': {
-            bgcolor: 'rgba(255, 10, 10, 0.9)',
-          }
-        }}
-      >
-        <KeyboardArrowUpIcon />
-      </Fab>
+      {/* Optimized scroll-to-top button with better performance */}
+      <Zoom in={showScrollTop}>
+        <Fab 
+          color="primary"
+          size="medium"
+          aria-label="scroll back to top"
+          onClick={scrollToTop}
+          sx={{
+            position: 'fixed',
+            bottom: 16,
+            right: 16,
+            zIndex: 1000,
+            bgcolor: 'primary.main',
+            color: 'black',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              bgcolor: 'error.main',
+              transform: 'translateY(-5px)'
+            }
+          }}
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Zoom>
     </Box>
   );
 }

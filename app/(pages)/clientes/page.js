@@ -1,32 +1,71 @@
 "use client"
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Container, Typography, Grid, Paper, Box, Fade, Zoom } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
+import { styled } from '@mui/material/styles';
 
-const clientLogos = [
-  {
-    id: 1,
-    src: '/images/logos/sacabollos.png',
-    alt: 'Sacabollos Impacto'
+// Styled component for client logo container
+const ClientLogoContainer = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  height: '200px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  background: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(10px)',
+  borderRadius: '16px',
+  border: '1px solid rgba(255, 255, 255, 0.18)',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    transform: 'translateY(-10px)',
+    background: 'rgba(255, 255, 255, 0.15)',
+    boxShadow: '0 8px 32px rgba(255, 215, 0, 0.15)',
   },
-  {
-    id: 2,
-    src: '/images/logos/see.png',
-    alt: 'SEE Automation Digital Packaging'
-  },
-  {
-    id: 3,
-    src: '/images/logos/manantial.jpg',
-    alt: 'Manantial Grupo Humano'
-  },
-  {
-    id: 4,
-    src: '/images/logos/cajaRuidos.png',
-    alt: 'Caja de Ruidos'
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '4px',
+    background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
   }
-];
+}));
 
 function Clientes() {
+  // Memoize client logos to prevent unnecessary re-renders
+  const clientLogos = useMemo(() => [
+    {
+      id: 1,
+      src: '/images/logos/sacabollos.png',
+      alt: 'Sacabollos Impacto',
+      width: 300,
+      height: 150
+    },
+    {
+      id: 2,
+      src: '/images/logos/see.png',
+      alt: 'SEE Automation Digital Packaging',
+      width: 300,
+      height: 150
+    },
+    {
+      id: 3,
+      src: '/images/logos/manantial.jpg',
+      alt: 'Manantial Grupo Humano',
+      width: 300,
+      height: 150
+    },
+    {
+      id: 4,
+      src: '/images/logos/cajaRuidos.png',
+      alt: 'Caja de Ruidos',
+      width: 300,
+      height: 150
+    }
+  ], []);
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -81,53 +120,36 @@ function Clientes() {
               {clientLogos.map((logo, index) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={logo.id}>
                   <Zoom in={inView} style={{ transitionDelay: `${index * 200}ms` }}>
-                    <Paper 
-                      elevation={3}
-                      sx={{
-                        p: 4,
-                        height: '200px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        borderRadius: '16px',
-                        border: '1px solid rgba(255, 255, 255, 0.18)',
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                          transform: 'translateY(-10px)',
-                          background: 'rgba(255, 255, 255, 0.15)',
-                          boxShadow: '0 8px 32px rgba(255, 215, 0, 0.15)',
-                        },
-                        '&::before': {
-                          content: '""',
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          width: '100%',
-                          height: '4px',
-                          background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
-                        }
-                      }}
-                    >
-                      <Box
-                        component="img"
-                        src={logo.src}
-                        alt={logo.alt}
-                        sx={{
-                          maxWidth: '100%',
-                          maxHeight: '100%',
-                          objectFit: 'contain',
-                          padding: 2,
-                          opacity: 0.9,
+                    <ClientLogoContainer elevation={3}>
+                      <Box 
+                        sx={{ 
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          width: '80%', 
+                          height: '80%',
                           transition: 'all 0.3s ease',
                           '&:hover': {
-                            opacity: 1,
                             transform: 'scale(1.05)',
                           }
                         }}
-                      />
-                    </Paper>
+                      >
+                        <Image
+                          src={logo.src}
+                          alt={logo.alt}
+                          width={logo.width}
+                          height={logo.height}
+                          sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 25vw"
+                          style={{
+                            objectFit: 'contain',
+                            opacity: 0.9,
+                            transition: 'opacity 0.3s ease',
+                          }}
+                          onMouseOver={(e) => { e.currentTarget.style.opacity = 1; }}
+                          onMouseOut={(e) => { e.currentTarget.style.opacity = 0.9; }}
+                        />
+                      </Box>
+                    </ClientLogoContainer>
                   </Zoom>
                 </Grid>
               ))}
