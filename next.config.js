@@ -9,6 +9,11 @@ const nextConfig = {
   basePath: isGitHubPages ? '/sise' : '',
   assetPrefix: isGitHubPages ? '/sise' : '',
 
+  // Expose environment variables to the browser
+  env: {
+    NEXT_PUBLIC_GITHUB_PAGES: isGitHubPages ? 'true' : 'false',
+  },
+
   // Image optimization configuration
   images: {
     formats: ['image/avif', 'image/webp'],

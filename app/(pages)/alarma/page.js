@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Container, Typography, Paper, Grid, Box, TextField, Button, Snackbar, Alert, CircularProgress, Fade, Slide } from '@mui/material';
 import { validateEmail, validateName, validatePhone, validateMessage } from '../../utils/validations';
+import { getImagePath } from '../../utils/imagePath';
 import SecurityIcon from '@mui/icons-material/Security';
 import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
@@ -120,7 +121,7 @@ function Alarma() {
       marginLeft: 'calc(-50vw + 50%)',
       marginRight: 'calc(-50vw + 50%)',
       py: 6,
-      backgroundImage: 'url("/images/home/alarma2.jpeg")',
+      backgroundImage: `url("${getImagePath('/images/home/alarma2.jpeg')}")`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
