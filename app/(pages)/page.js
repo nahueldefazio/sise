@@ -61,7 +61,7 @@ function Inicio() {
   // Memoize carousel items to prevent unnecessary re-renders
   const items = useMemo(() => [
     {
-      img: "/images/home/sise3.jpg",
+      img: "./images/home/sise3.jpg",
       alt: "Propiedad monitoreada las 24hs",
       title: "Monitoreo 24/7",
       description: "Servicios Integrales en Seguridad Electronica",
@@ -69,7 +69,7 @@ function Inicio() {
       height: 1080
     },
     {
-      img: "/images/home/cam3.jpg",
+      img: "./images/home/cam3.jpg",
       alt: "Monitoreo 24/7",
       title: "Monitoreo 24/7",
       description: "Atencion personalizada",
@@ -77,7 +77,7 @@ function Inicio() {
       height: 1080
     },
     {
-      img: "/images/home/alarma1.png",
+      img: "./images/home/alarma1.png",
       alt: "Alarmas Residenciales",
       title: "Alarmas Residenciales",
       description: "Instalacion de alarmas de seguridad",
@@ -237,7 +237,7 @@ function Inicio() {
 
           {/* Alarm System Section - Optimized with styled components */}
           <Box sx={{
-            backgroundImage: 'url("/images/home/camara-de-seguridad.png")',
+            backgroundImage: 'url("./images/home/camara-de-seguridad.png")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
@@ -285,7 +285,7 @@ function Inicio() {
                       </Typography>
                       <Box sx={{ width: '100%', height: 'auto' }}>
                         <Image 
-                          src="/images/home/sise.jpg" 
+                          src="./images/home/sise.jpg"
                           alt="DSC Alarm System Components"
                           width={800}
                           height={500}
@@ -321,7 +321,7 @@ function Inicio() {
           {/* Monitoring Section - Optimized with styled components */}
           <FullWidthSection 
             ref={ref2} 
-            backgroundImage="/images/home/home2.avif"
+            backgroundImage="./images/home/home2.avif"
             sx={{
               backgroundAttachment: 'fixed',
               transition: 'transform 0.5s ease',
@@ -404,7 +404,7 @@ function Inicio() {
 
                       <Box sx={{ width: '100%', height: 'auto', mt: 3 }}>
                         <Image 
-                          src="/images/home/sise2.jpg" 
+                          src="./images/home/sise2.jpg"
                           alt="Sistema de cámaras de seguridad" 
                           width={800}
                           height={500}
