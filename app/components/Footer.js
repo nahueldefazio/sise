@@ -5,6 +5,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useState } from 'react';
 import { validateEmail, validateName } from '../utils/validations';
+import { getNavPath, getApiUrl } from '../utils/getNavPath';
 
 function Footer() {
   const [errors, setErrors] = useState({});
@@ -16,24 +17,24 @@ function Footer() {
     const email = formData.get('email');
 
     const data = { name, email };
-    
+
     // Validate fields
     const newErrors = {};
     if (!validateName(name)) newErrors.name = 'El nombre debe tener al menos 2 caracteres';
     if (!validateEmail(email)) newErrors.email = 'Email inválido';
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/contact', {
+      const response = await fetch(getApiUrl('api/contact'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-      
+
       if (!response.ok) throw new Error('Error al enviar');
       alert('Suscripción exitosa');
       event.target.reset();
@@ -73,7 +74,7 @@ function Footer() {
               de protegerlos y seguir dándoles la seguridad a sus seres queridos y sus bienes.
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              Conocé nuestras <Link href="/politicas-de-privacidad" sx={{ 
+              Conocé nuestras <Link href={getNavPath("/politicas-de-privacidad")} sx={{ 
                 color: '#FDEC06', 
                 textDecoration: 'none',
                 '&:hover': { textDecoration: 'underline' }
@@ -137,7 +138,7 @@ function Footer() {
             <Typography variant="body2" sx={{ mb: 2 }}>
               Fax <Box component="span" sx={{ color: '#FDEC06' }}>+54 11 3221 2100-5517</Box>
             </Typography>
-            
+
             <Box sx={{ mb: 3 }}>
               <Typography variant="body2" component="a" href="mailto:ventas@sise.com.ar" sx={{ 
                 display: 'block',

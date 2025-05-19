@@ -10,7 +10,7 @@
         "lint": "next lint",
         "export": "next build",
         "export:github": "cross-env GITHUB_PAGES=true next build",
-        "deploy": "npm run export:github"
+        "deploy": "cross-env GITHUB_PAGES=true next build"
     },
     "dependencies": {
         "@emotion/react": "^11.14.0",
