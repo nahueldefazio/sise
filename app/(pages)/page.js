@@ -8,6 +8,7 @@ import { Fab } from '@mui/material';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
 import { getImagePath } from '../utils/imagePath';
+import { getNavPath } from '../utils/getNavPath';
 
 // Styled components for reusable styles
 const GlassmorphicContainer = styled(Box)(({ theme }) => ({
@@ -308,7 +309,7 @@ function Inicio() {
                         variant="contained" 
                         color="primary" 
                         size="large" 
-                        href="/alarma"
+                        href={getNavPath("/alarma")}
                       >
                         Sistema de Alarmas
                       </StyledButton>
@@ -356,7 +357,7 @@ function Inicio() {
                   variant="outlined" 
                   color="inherit" 
                   size="large"
-                  href="/monitoreo"
+                  href={getNavPath("/monitoreo")}
                   sx={{ mt: 4 }}
                 >
                   Monitoreo de Alarmas
@@ -398,7 +399,7 @@ function Inicio() {
                         variant="contained" 
                         color="primary" 
                         size="large" 
-                        href="/camaras"
+                        href={getNavPath("/camaras")}
                       >
                         Instalación de Cámaras
                       </StyledButton>
