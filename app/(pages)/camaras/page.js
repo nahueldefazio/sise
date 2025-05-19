@@ -5,7 +5,7 @@ function Camaras() {
   return (
     <Container disableGutters maxWidth={false} sx={{ py: 10, 
       px: 20,
-      backgroundImage: 'url("./images/home/camara2.avif")',
+      backgroundImage: 'url("/images/home/camara2.avif")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
@@ -65,7 +65,7 @@ function Camaras() {
                 <Typography variant="body1" paragraph>
                   Gracias a la tecnología actual podrás visualizar...
                 </Typography>
-                
+
                 {/* Wrap all your content sections in Box components */}
                 <Box sx={{ mb: 6 }}>
                   <Typography variant="h5" gutterBottom sx={{ color: '#FDEC06', mb: 3 }}>
@@ -164,7 +164,7 @@ function Camaras() {
               <Typography variant="body1" paragraph align="center">
                 Gracias a la tecnología actual podrás visualizar un sistema de cámaras online desde tu notebook o smartphone donde quiera que estés. Solo tenés que dejarnos tus datos y nos estaremos comunicando para contarte en cómo podemos ayudarte.
               </Typography>
-              
+
               {/* Add your form fields here */}
             </Paper>
           </Slide>

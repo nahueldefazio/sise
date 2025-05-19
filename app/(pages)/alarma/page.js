@@ -72,11 +72,11 @@ function Alarma() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-        
+
       const result = await response.json();      
-             
+
       if (!response.ok) throw new Error(result.error || 'Error al enviar');
-      
+
       setSubmitStatus({ message: 'Formulario enviado con éxito', isError: false });
       setOpenSnackbar(true);
       event.target.reset();
@@ -120,7 +120,7 @@ function Alarma() {
       marginLeft: 'calc(-50vw + 50%)',
       marginRight: 'calc(-50vw + 50%)',
       py: 6,
-      backgroundImage: 'url("./images/home/alarma2.jpeg")',
+      backgroundImage: 'url("/images/home/alarma2.jpeg")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
@@ -157,7 +157,7 @@ function Alarma() {
               <Typography variant="h4" gutterBottom color="primary" sx={{ mb: 4 }}>
                 ¿Querés tener el control de tu negocio?
               </Typography>
-              
+
               <Typography variant="body1" paragraph sx={{ mb: 4, color: 'primary.main' }}>
                 Te ofrecemos un sistema de intrusión que consiste de varios elementos:
               </Typography>
@@ -218,7 +218,7 @@ function Alarma() {
                 </Typography>
               </Box>
 
-             
+
 
               <Typography variant="h6" sx={{ mt: 4, color: 'primary.main', fontStyle: 'italic' }}>
                 Te asesoramos para que encuentres el sistema que más se adecue a tus necesidades.
@@ -226,7 +226,7 @@ function Alarma() {
             </Paper>
           </Slide>
         </Grid>
-         
+
 
 
               {/* Price Section */}
@@ -290,7 +290,7 @@ function Alarma() {
           <Slide direction="left" in timeout={1000}>
             <Paper elevation={3} sx={{ 
               p: 4,
-          
+
               borderRadius: 2,
               background: 'linear-gradient(135deg, #0D0D0D, #1C1C1C)',
                       background: 'rgba(0, 5, 5, 0.25);', /* fondo semitransparente */
@@ -309,11 +309,11 @@ function Alarma() {
               }}>
                 CONSTRUYE UNA
               </Typography>
-              
+
               <Typography variant="body1" paragraph align="center">
                 Para proteger y controlar tu negocio te ofrecemos un sistema de intrusión a medida, solo tenés que dejarnos tus datos y nos estaremos comunicando para contarte en cómo podemos ayudarte
               </Typography>
-              
+
               <Box 
                 component="form" 
                 onSubmit={handleSubmit}

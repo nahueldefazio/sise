@@ -1,54 +1,19 @@
 {
   "pages": {
-    "/(pages)/page": [
+    "/(pages)/clientes/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(pages)/page.js"
+      "static/chunks/app/(pages)/clientes/page.js"
     ],
     "/(pages)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(pages)/layout.js"
     ],
-    "/(pages)/camaras/page": [
+    "/(pages)/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(pages)/camaras/page.js"
-    ],
-    "/(pages)/alarma/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(pages)/alarma/page.js"
-    ],
-    "/(pages)/monitoreo/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(pages)/monitoreo/page.js"
-    ],
-    "/(pages)/servicios/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(pages)/servicios/page.js"
-    ],
-    "/(pages)/clientes/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(pages)/clientes/page.js"
-    ],
-    "/(pages)/nosotros/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(pages)/nosotros/page.js"
-    ],
-    "/(pages)/contacto/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(pages)/contacto/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/(pages)/page.js"
     ]
   }
 }

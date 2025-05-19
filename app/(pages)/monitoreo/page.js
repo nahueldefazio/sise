@@ -86,11 +86,11 @@ function Monitoreo() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
           });
-        
+
       const result = await response.json();      
-             
+
       if (!response.ok) throw new Error(result.error || 'Error al enviar');
-      
+
       setSubmitStatus({ message: 'Formulario enviado con éxito', isError: false });
       setOpenSnackbar(true);
       event.target.reset();
@@ -119,7 +119,7 @@ function Monitoreo() {
       <Container disableGutters maxWidth={false} sx={{
         py: 10, 
         px: { xs: 2, md: 20 },
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/home/alarma4.jpg")',
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/images/home/alarma4.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

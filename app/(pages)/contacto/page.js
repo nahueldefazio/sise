@@ -73,11 +73,11 @@ function Contacto() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-        
+
       const result = await response.json();      
-             
+
       if (!response.ok) throw new Error(result.error || 'Error al enviar');
-      
+
       setSubmitStatus({ message: 'Formulario enviado con éxito', isError: false });
       setOpenSnackbar(true);
       event.target.reset();
@@ -106,13 +106,13 @@ function Contacto() {
       width: '100vw',
       marginLeft: 'calc(-50vw + 50%)',
       marginRight: 'calc(-50vw + 50%)',
-      backgroundImage: 'url("./images/home/contact.avif")',
+      backgroundImage: 'url("/images/home/contact.avif")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
       alignItems: 'center',
     }}>
-          
+
 
       <Grid container spacing={4} justifyContent="center">
         <Grid item xs={12} md={6}>
