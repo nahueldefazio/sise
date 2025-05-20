@@ -15,12 +15,8 @@ import {
   useMediaQuery
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-<<<<<<< HEAD
-import { getImagePath } from '../utils/imageLoader';
-=======
 import { getImagePath } from '../utils/imagePath';
 import { getNavPath } from '../utils/getNavPath';
->>>>>>> ce623003306714adb31e85bc87ff454e48a5f1db
 
 const navItems = [
   { title: 'INICIO', path: '/' },
