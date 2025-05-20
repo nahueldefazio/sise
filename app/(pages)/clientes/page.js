@@ -39,28 +39,28 @@ function Clientes() {
   const clientLogos = useMemo(() => [
     {
       id: 1,
-      src: '/images/logos/sacabollos.png',
+      src: getImagePath('/images/logos/sacabollos.png'),
       alt: 'Sacabollos Impacto',
       width: 300,
       height: 150
     },
     {
       id: 2,
-      src: '/images/logos/see.png',
+      src: getImagePath('/images/logos/see.png'),
       alt: 'SEE Automation Digital Packaging',
       width: 300,
       height: 150
     },
     {
       id: 3,
-      src: '/images/logos/manantial.jpg',
+      src: getImagePath('/images/logos/manantial.jpg'),
       alt: 'Manantial Grupo Humano',
       width: 300,
       height: 150
     },
     {
       id: 4,
-      src: '/images/logos/cajaRuidos.png',
+      src: getImagePath('/images/logos/cajaRuidos.png'),
       alt: 'Caja de Ruidos',
       width: 300,
       height: 150
