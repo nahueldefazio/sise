@@ -1,11 +1,12 @@
 import React from 'react';
 import { Container, Typography, Paper, Grid, Box, TextField, Button, Fade, Slide } from '@mui/material';
+import { getImagePath } from '../../utils/imagePath';
 
 function Camaras() {
   return (
     <Container disableGutters maxWidth={false} sx={{ py: 10, 
       px: 20,
-      backgroundImage: 'url("/images/home/camara2.avif")',
+      backgroundImage: `url("${getImagePath('/images/home/camara2.avif')}")`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',

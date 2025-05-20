@@ -7,7 +7,12 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Fab } from '@mui/material';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
+<<<<<<< HEAD
 import { getImagePath } from '../utils/imageLoader';
+=======
+import { getImagePath } from '../utils/imagePath';
+import { getNavPath, getNonNavbarPath } from '../utils/getNavPath';
+>>>>>>> ce623003306714adb31e85bc87ff454e48a5f1db
 
 // Styled components for reusable styles
 const GlassmorphicContainer = styled(Box)(({ theme }) => ({
@@ -34,7 +39,7 @@ const FullWidthSection = styled(Box)(({ theme, backgroundImage }) => ({
   marginRight: 'calc(-50vw + 50%)',
   paddingTop: theme.spacing(6),
   paddingBottom: theme.spacing(6),
-  backgroundImage: `url("${backgroundImage}")`,
+  backgroundImage: `url("${getImagePath(backgroundImage)}")`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   display: 'flex',
@@ -62,7 +67,7 @@ function Inicio() {
   // Memoize carousel items to prevent unnecessary re-renders
   const items = useMemo(() => [
     {
-      img: "/images/home/sise3.jpg",
+      img: getImagePath("/images/home/sise3.jpg"),
       alt: "Propiedad monitoreada las 24hs",
       title: "Monitoreo 24/7",
       description: "Servicios Integrales en Seguridad Electronica",
@@ -70,7 +75,7 @@ function Inicio() {
       height: 1080
     },
     {
-      img: "/images/home/cam3.jpg",
+      img: getImagePath("/images/home/cam3.jpg"),
       alt: "Monitoreo 24/7",
       title: "Monitoreo 24/7",
       description: "Atencion personalizada",
@@ -78,7 +83,7 @@ function Inicio() {
       height: 1080
     },
     {
-      img: "/images/home/alarma1.png",
+      img: getImagePath("/images/home/alarma1.png"),
       alt: "Alarmas Residenciales",
       title: "Alarmas Residenciales",
       description: "Instalacion de alarmas de seguridad",
@@ -308,7 +313,7 @@ function Inicio() {
                         variant="contained" 
                         color="primary" 
                         size="large" 
-                        href="/alarma"
+                        href={getNonNavbarPath("/alarma")}
                       >
                         Sistema de Alarmas
                       </StyledButton>
@@ -356,7 +361,7 @@ function Inicio() {
                   variant="outlined" 
                   color="inherit" 
                   size="large"
-                  href="/monitoreo"
+                  href={getNonNavbarPath("/monitoreo")}
                   sx={{ mt: 4 }}
                 >
                   Monitoreo de Alarmas
@@ -398,7 +403,7 @@ function Inicio() {
                         variant="contained" 
                         color="primary" 
                         size="large" 
-                        href="/camaras"
+                        href={getNonNavbarPath("/camaras")}
                       >
                         Instalación de Cámaras
                       </StyledButton>

@@ -4,6 +4,7 @@ import { Container, Typography, Grid, Box, TextField, Button, Snackbar, Alert } 
 import { CircularProgress, Zoom, Slide } from '@mui/material';  // Updated imports
 import { useState } from 'react';
 import { validateEmail, validateName, validatePhone, validateMessage } from '../../utils/validations';
+import { getImagePath } from '../../utils/imagePath';
 
 function Contacto() {
   const [errors, setErrors] = useState({});
@@ -106,7 +107,7 @@ function Contacto() {
       width: '100vw',
       marginLeft: 'calc(-50vw + 50%)',
       marginRight: 'calc(-50vw + 50%)',
-      backgroundImage: 'url("/images/home/contact.avif")',
+      backgroundImage: `url("${getImagePath('/images/home/contact.avif')}")`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',

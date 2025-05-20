@@ -15,7 +15,12 @@ import {
   useMediaQuery
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+<<<<<<< HEAD
 import { getImagePath } from '../utils/imageLoader';
+=======
+import { getImagePath } from '../utils/imagePath';
+import { getNavPath } from '../utils/getNavPath';
+>>>>>>> ce623003306714adb31e85bc87ff454e48a5f1db
 
 const navItems = [
   { title: 'INICIO', path: '/' },
@@ -44,7 +49,7 @@ function Navbar() {
       boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
     }}>
       <Toolbar sx={{color: "yellow"}} >
-        <Link href="/" passHref>
+        <Link href={getNavPath("/")} passHref>
           <Box
             sx={{
               display: 'flex',
@@ -92,7 +97,7 @@ function Navbar() {
                     key={item.title}
                     onClick={handleDrawerToggle}
                   >
-                    <Link href={item.path} passHref style={{ textDecoration: 'none' }}>
+                    <Link href={getNavPath(item.path)} passHref style={{ textDecoration: 'none' }}>
                       <ListItemText primary={item.title} />
                     </Link>
                   </ListItem>
@@ -104,7 +109,7 @@ function Navbar() {
           <Box sx={{ display: 'flex', gap: 2 }}>
             {navItems.map((item) => (
               <Link 
-                href={item.path} 
+                href={getNavPath(item.path)} 
                 key={item.title} 
                 passHref 
                 style={{ textDecoration: 'none', color: 'yellow' }}

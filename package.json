@@ -9,8 +9,13 @@
         "start": "next build && next start -p 3001",
         "lint": "next lint",
         "export": "next build",
+<<<<<<< HEAD
         "export:github": "cross-env GITHUB_PAGES=true NEXT_PUBLIC_GITHUB_PAGES=true next build",
         "deploy": "npm run export:github"
+=======
+        "export:github": "cross-env GITHUB_PAGES=true next build",
+        "deploy": "cross-env GITHUB_PAGES=true next build"
+>>>>>>> ce623003306714adb31e85bc87ff454e48a5f1db
     },
     "dependencies": {
         "@emotion/react": "^11.14.0",
