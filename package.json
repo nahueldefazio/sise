@@ -5,11 +5,11 @@
     "scripts": {
         "dev": "next dev -p 3001",
         "build": "next build",
-        "build:github": "cross-env GITHUB_PAGES=true next build",
+        "build:github": "cross-env GITHUB_PAGES=true NEXT_PUBLIC_GITHUB_PAGES=true next build",
         "start": "next build && next start -p 3001",
         "lint": "next lint",
         "export": "next build",
-        "export:github": "cross-env GITHUB_PAGES=true next build",
+        "export:github": "cross-env GITHUB_PAGES=true NEXT_PUBLIC_GITHUB_PAGES=true next build",
         "deploy": "npm run export:github"
     },
     "dependencies": {

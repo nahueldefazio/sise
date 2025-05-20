@@ -4,6 +4,7 @@ import { Container, Typography, Grid, Paper, Box, Fade, Zoom } from '@mui/materi
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
+import { getImagePath } from '../../utils/imageLoader';
 
 // Styled component for client logo container
 const ClientLogoContainer = styled(Paper)(({ theme }) => ({
@@ -135,7 +136,7 @@ function Clientes() {
                         }}
                       >
                         <Image
-                          src={logo.src}
+                          src={getImagePath(logo.src)}
                           alt={logo.alt}
                           width={logo.width}
                           height={logo.height}

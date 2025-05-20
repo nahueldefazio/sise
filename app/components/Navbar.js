@@ -15,6 +15,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { getImagePath } from '../utils/imageLoader';
 
 const navItems = [
   { title: 'INICIO', path: '/' },
@@ -58,7 +59,7 @@ function Navbar() {
           >
             <Box
               component="img"
-              src="/images/logos/logo.jpg"
+              src={getImagePath("/images/logos/logo.jpg")}
               alt="SISE - Servicios Integrados en Seguridad Electrónica"
               sx={{
                 height: '50px',

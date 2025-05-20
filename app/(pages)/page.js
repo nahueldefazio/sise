@@ -7,6 +7,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Fab } from '@mui/material';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
+import { getImagePath } from '../utils/imageLoader';
 
 // Styled components for reusable styles
 const GlassmorphicContainer = styled(Box)(({ theme }) => ({
@@ -173,7 +174,7 @@ function Inicio() {
                     }}
                   >
                     <Image
-                      src={item.img}
+                      src={getImagePath(item.img)}
                       alt={item.alt}
                       sizes="(max-width: 600px) 100vw, (max-width: 960px) 100vw, 100vw"
                       priority={i === 0} // Load first image with priority
@@ -237,7 +238,7 @@ function Inicio() {
 
           {/* Alarm System Section - Optimized with styled components */}
           <Box sx={{
-            backgroundImage: 'url("/images/home/camara-de-seguridad.png")',
+            backgroundImage: `url("${getImagePath('/images/home/camara-de-seguridad.png')}")`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
@@ -285,7 +286,7 @@ function Inicio() {
                       </Typography>
                       <Box sx={{ width: '100%', height: 'auto' }}>
                         <Image 
-                          src="/images/home/sise.jpg"
+                          src={getImagePath("/images/home/sise.jpg")}
                           alt="DSC Alarm System Components"
                           width={800}
                           height={500}
@@ -321,7 +322,7 @@ function Inicio() {
           {/* Monitoring Section - Optimized with styled components */}
           <FullWidthSection 
             ref={ref2} 
-            backgroundImage="/images/home/home2.avif"
+            backgroundImage={getImagePath("/images/home/home2.avif")}
             sx={{
               backgroundAttachment: 'fixed',
               transition: 'transform 0.5s ease',
@@ -367,7 +368,7 @@ function Inicio() {
           {/* Camera System Section - Optimized with styled components */}
           <FullWidthSection 
             ref={ref3} 
-            backgroundImage="/images/home/home3.avif"
+            backgroundImage={getImagePath("/images/home/home3.avif")}
           >
             <Grid container spacing={6} justifyContent="center">
               <Grid item xs={12} md={8} lg={6}>
@@ -404,7 +405,7 @@ function Inicio() {
 
                       <Box sx={{ width: '100%', height: 'auto', mt: 3 }}>
                         <Image
-                          src="/images/home/sise2.jpg"
+                          src={getImagePath("/images/home/sise2.jpg")}
                           alt="Sistema de cámaras de seguridad" 
                           width={800}
                           height={500}
