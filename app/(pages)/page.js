@@ -7,12 +7,9 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Fab } from '@mui/material';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
-<<<<<<< HEAD
-import { getImagePath } from '../utils/imageLoader';
-=======
 import { getImagePath } from '../utils/imagePath';
 import { getNavPath, getNonNavbarPath } from '../utils/getNavPath';
->>>>>>> ce623003306714adb31e85bc87ff454e48a5f1db
+
 
 // Styled components for reusable styles
 const GlassmorphicContainer = styled(Box)(({ theme }) => ({
