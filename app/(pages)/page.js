@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useEffect, useState, useMemo } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Container, Typography, Grid, Box, Button, Fade, Slide, Zoom } from '@mui/material';
@@ -9,7 +9,6 @@ import Image from 'next/image';
 import { styled } from '@mui/material/styles';
 import { getImagePath } from '../utils/imagePath';
 import { getNavPath, getNonNavbarPath } from '../utils/getNavPath';
-
 
 // Styled components for reusable styles
 const GlassmorphicContainer = styled(Box)(({ theme }) => ({
@@ -41,14 +40,14 @@ const FullWidthSection = styled(Box)(({ theme, backgroundImage }) => ({
   backgroundPosition: 'center',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'center'
 }));
 
 const ResponsiveImage = styled(Image)({
   width: '100%',
   height: 'auto',
   borderRadius: '20px',
-  marginTop: '20px',
+  marginTop: '20px'
 });
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -62,32 +61,35 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 function Inicio() {
   // Memoize carousel items to prevent unnecessary re-renders
-  const items = useMemo(() => [
-    {
-      img: getImagePath("/images/home/sise3.jpg"),
-      alt: "Propiedad monitoreada las 24hs",
-      title: "Monitoreo 24/7",
-      description: "Servicios Integrales en Seguridad Electronica",
-      width: 1920,
-      height: 1080
-    },
-    {
-      img: getImagePath("/images/home/cam3.jpg"),
-      alt: "Monitoreo 24/7",
-      title: "Monitoreo 24/7",
-      description: "Atencion personalizada",
-      width: 1920,
-      height: 1080
-    },
-    {
-      img: getImagePath("/images/home/alarma1.png"),
-      alt: "Alarmas Residenciales",
-      title: "Alarmas Residenciales",
-      description: "Instalacion de alarmas de seguridad",
-      width: 1920,
-      height: 1080
-    },    
-  ], []);
+  const items = useMemo(
+    () => [
+      {
+        img: getImagePath('/images/home/sise3.jpg'),
+        alt: 'Propiedad monitoreada las 24hs',
+        title: 'Monitoreo 24/7',
+        description: 'Servicios Integrales en Seguridad Electronica',
+        width: 1920,
+        height: 1080
+      },
+      {
+        img: getImagePath('/images/home/cam3.jpg'),
+        alt: '',
+        title: 'Seguridad Integral',
+        description: 'Atencion personalizada',
+        width: 1920,
+        height: 1080
+      },
+      {
+        img: getImagePath('/images/home/alarma1.png'),
+        alt: 'Alarmas Residenciales',
+        title: 'Alarmas Residenciales',
+        description: 'Instalacion de alarmas de seguridad',
+        width: 1920,
+        height: 1080
+      }
+    ],
+    []
+  );
 
   // Use a single useInView hook with refs object for better performance
   const { ref: ref1, inView: inView1 } = useInView({ threshold: 0.2, triggerOnce: true });
@@ -128,11 +130,13 @@ function Inicio() {
       <Fade in timeout={1000}>
         <Box>
           {/* Hero Carousel Section - Optimized with Next.js Image */}
-          <Box sx={{ 
-            width: '100%', 
-            height: '90vh',
-            position: 'relative',
-          }}>
+          <Box
+            sx={{
+              width: '100%',
+              height: '90vh',
+              position: 'relative'
+            }}
+          >
             <Carousel
               animation="slide"
               interval={5000}
@@ -159,9 +163,9 @@ function Inicio() {
                     position: 'relative'
                   }}
                 >
-                  <Box 
-                    sx={{ 
-                      width: '100%', 
+                  <Box
+                    sx={{
+                      width: '100%',
                       height: '100%',
                       '&::before': {
                         content: '""',
@@ -178,12 +182,13 @@ function Inicio() {
                     <Image
                       src={getImagePath(item.img)}
                       alt={item.alt}
-                      sizes="(max-width: 600px) 100vw, (max-width: 960px) 100vw, 100vw"
+                      sizes="100vw"
                       priority={i === 0} // Load first image with priority
-                      style={{ 
-                        objectFit: 'cover',
+                      style={{
+                        objectFit: 'contain',
                         width: '100%',
-                        height: '100%'
+                        height: '100%',
+                        backgroundColor: '#000000'
                       }}
                       quality={80}
                       width={item.width || 1920}
@@ -213,9 +218,9 @@ function Inicio() {
                       zIndex: 2
                     }}
                   >
-                    <Typography 
-                      variant="h2" 
-                      sx={{ 
+                    <Typography
+                      variant="h2"
+                      sx={{
                         fontWeight: 'bold',
                         textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
                         mb: 2
@@ -223,9 +228,9 @@ function Inicio() {
                     >
                       {item.title || 'Seguridad Integral'}
                     </Typography>
-                    <Typography 
+                    <Typography
                       variant="h5"
-                      sx={{ 
+                      sx={{
                         maxWidth: '800px',
                         textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
                       }}
@@ -239,79 +244,74 @@ function Inicio() {
           </Box>
 
           {/* Alarm System Section - Optimized with styled components */}
-          <Box sx={{
-            backgroundImage: `url("${getImagePath('/images/home/camara-de-seguridad.png')}")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            position: 'relative',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              zIndex: 0
-            }
-          }}>
-            <Container ref={ref1} maxWidth="lg" sx={{ 
-              py: 12,
+          <Box
+            sx={{
+              backgroundImage: `url("${getImagePath('/images/home/camara-de-seguridad.png')}")`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundAttachment: 'fixed',
               position: 'relative',
-              borderRadius: 4,
-            }}>
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                zIndex: 0
+              }
+            }}
+          >
+            <Container
+              ref={ref1}
+              maxWidth="lg"
+              sx={{
+                py: 12,
+                position: 'relative',
+                borderRadius: 4
+              }}
+            >
               <Grid container spacing={6} alignItems="center">
                 <Grid item xs={12} md={6}>
                   <Slide direction="left" in={inView1} timeout={1200}>
-                    <Box sx={{ 
-                      p: 4,
-                      borderRadius: 2,
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
-                      color: 'white'
-                    }}>
-                      <Typography 
-                        variant="body1" 
-                        color="text.secondary" 
-                        gutterBottom
-                      >
+                    <Box
+                      sx={{
+                        p: 4,
+                        borderRadius: 2,
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+                        color: 'white'
+                      }}
+                    >
+                      <Typography variant="body1" color="white" gutterBottom sx={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)', fontWeight: 'bold', fontSize: '20px' }}>
                         Cuando las oportunidades no llamen a tu puerta...
                       </Typography>
-                      <Typography 
-                        variant="h3" 
-                        component="h2" 
-                        color="error" 
-                        gutterBottom 
-                        sx={{ fontWeight: 'bold' }}
-                      >
+                      <Typography variant="h3" component="h2" color="white" gutterBottom sx={{ fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
                         CONSTRUYE UNA
                       </Typography>
                       <Box sx={{ width: '100%', height: 'auto' }}>
-                        <Image 
-                          src={getImagePath("/images/home/sise.jpg")}
+                        <Image
+                          src={getImagePath('/images/home/sise.jpg')}
                           alt="DSC Alarm System Components"
                           width={800}
                           height={500}
-                          style={{ 
+                          style={{
                             objectFit: 'cover',
-                            borderRadius: '20px',
+                            borderRadius: '30px',
                             width: '100%',
-                            height: 'auto'
+                            height: 'auto',
+                            clipPath: 'inset(4% 0% 3% 0%)'
                           }}
                         />
                       </Box>
-                      <Typography variant="body1" paragraph sx={{marginTop: "20px"}}>
+                      <Typography variant="body1" paragraph sx={{ marginTop: '20px' }}>
                         Para proteger a tu familia o tu negocio te ofrecemos un sistema de intrusión a medida que consiste de varios elementos.
                       </Typography>
                       <Typography variant="body1" paragraph>
-                        Un gabinete donde se aloja la placa madre donde realiza todos los procesos electrónicos, un transformador y una batería para que el sistema siga operando aún ante un corte de luz.
+                        Un gabinete donde se aloja la placa madre donde realiza todos los procesos electrónicos, un transformador y una batería para que el sistema siga operando aún ante un corte de
+                        luz.
                       </Typography>
-                      <StyledButton 
-                        variant="contained" 
-                        color="primary" 
-                        size="large" 
-                        href={getNonNavbarPath("/alarma")}
-                      >
+                      <StyledButton variant="contained" color="primary" size="large" href={getNonNavbarPath('/alarma')}>
                         Sistema de Alarmas
                       </StyledButton>
                     </Box>
@@ -322,9 +322,9 @@ function Inicio() {
           </Box>
 
           {/* Monitoring Section - Optimized with styled components */}
-          <FullWidthSection 
-            ref={ref2} 
-            backgroundImage={getImagePath("/images/home/home2.avif")}
+          <FullWidthSection
+            ref={ref2}
+            backgroundImage={getImagePath('/images/home/home2.avif')}
             sx={{
               backgroundAttachment: 'fixed',
               transition: 'transform 0.5s ease',
@@ -338,14 +338,7 @@ function Inicio() {
                 <Typography variant="h3" component="h2" gutterBottom align="center">
                   Deja de preocuparte y
                 </Typography>
-                <Typography 
-                  variant="h3" 
-                  component="span" 
-                  color="success.main" 
-                  align="center" 
-                  display="block"
-                  gutterBottom
-                >
+                <Typography variant="h3" component="span" color="success.main" align="center" display="block" gutterBottom>
                   RESUELVE TUS PROBLEMAS
                 </Typography>
                 <Typography variant="body1" align="center" sx={{ maxWidth: '800px', mx: 'auto', mb: 4 }}>
@@ -354,13 +347,7 @@ function Inicio() {
                 <Typography variant="body1" align="center">
                   Contamos con personal las 24hs los 365 días del año para atender y actuar con el usuario o la policía por cualquier evento que haya comunicado el sistema de alarma.
                 </Typography>
-                <StyledButton 
-                  variant="outlined" 
-                  color="inherit" 
-                  size="large"
-                  href={getNonNavbarPath("/monitoreo")}
-                  sx={{ mt: 4 }}
-                >
+                <StyledButton variant="outlined" color="inherit" size="large" href={getNonNavbarPath('/monitoreo')} sx={{ mt: 4 }}>
                   Monitoreo de Alarmas
                 </StyledButton>
               </GlassmorphicContainer>
@@ -368,51 +355,40 @@ function Inicio() {
           </FullWidthSection>
 
           {/* Camera System Section - Optimized with styled components */}
-          <FullWidthSection 
-            ref={ref3} 
-            backgroundImage={getImagePath("/images/home/home3.avif")}
-          >
+          <FullWidthSection ref={ref3} backgroundImage={getImagePath('/images/home/home3.avif')}>
             <Grid container spacing={6} justifyContent="center">
               <Grid item xs={12} md={8} lg={6}>
                 <Slide direction="right" in={inView3} timeout={1200}>
                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <GlassmorphicContainer sx={{ 
-                      width: { xs: '90%', sm: '80%', md: '70%' },
-                      padding: { xs: '2rem', sm: '2rem 3rem', md: '2rem 4rem' }
-                    }}>
+                    <GlassmorphicContainer
+                      sx={{
+                        width: { xs: '90%', sm: '80%', md: '70%' },
+                        padding: { xs: '2rem', sm: '2rem 3rem', md: '2rem 4rem' }
+                      }}
+                    >
                       <Typography variant="h3" component="h2" gutterBottom>
                         Si lo imaginas
                       </Typography>
-                      <Typography 
-                        variant="h3" 
-                        component="span" 
-                        color="error" 
-                        sx={{ fontWeight: 'bold', display: 'block', mb: 3 }}
-                      >
+                      <Typography variant="h3" component="span" color="error" sx={{ fontWeight: 'bold', display: 'block', mb: 3 }}>
                         ES REAL
                       </Typography>
                       <Typography variant="body1" paragraph>
-                        Gracias a la tecnología actual, podrás visualizar tu sistema de cámaras en tiempo real desde cualquier lugar del mundo, simplemente con una conexión a internet. 
-                        Ya sea desde tu notebook, smartphone o tablet, tendrás acceso inmediato a las imágenes de tu hogar o empresa.
+                        Gracias a la tecnología actual, podrás visualizar tu sistema de cámaras en tiempo real desde cualquier lugar del mundo, simplemente con una conexión a internet. Ya sea desde tu
+                        notebook, smartphone o tablet, tendrás acceso inmediato a las imágenes de tu hogar o empresa.
                       </Typography>
                       {/* Removed duplicate paragraph */}
-                      <StyledButton 
-                        variant="contained" 
-                        color="primary" 
-                        size="large" 
-                        href={getNonNavbarPath("/camaras")}
-                      >
+                      <StyledButton variant="contained" color="primary" size="large" href={getNonNavbarPath('/camaras')}>
                         Instalación de Cámaras
                       </StyledButton>
 
                       <Box sx={{ width: '100%', height: 'auto', mt: 3 }}>
                         <Image
-                          src={getImagePath("/images/home/sise2.jpg")}
-                          alt="Sistema de cámaras de seguridad" 
+                          src={getImagePath('/images/home/sise2.jpg')}
+                          alt="Sistema de cámaras de seguridad"
                           width={800}
                           height={500}
                           sizes="(max-width: 600px) 90vw, (max-width: 960px) 70vw, 600px"
-                          style={{ 
+                          style={{
                             objectFit: 'cover',
                             borderRadius: '20px',
                             width: '100%',
@@ -428,12 +404,11 @@ function Inicio() {
           </FullWidthSection>
 
           {/* Why Choose Us Section */}
-
         </Box>
       </Fade>
       {/* Optimized scroll-to-top button with better performance */}
       <Zoom in={showScrollTop}>
-        <Fab 
+        <Fab
           color="primary"
           size="medium"
           aria-label="scroll back to top"
@@ -458,6 +433,5 @@ function Inicio() {
     </Box>
   );
 }
-
 
 export default Inicio;

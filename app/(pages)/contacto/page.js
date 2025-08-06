@@ -1,7 +1,7 @@
-"use client"
+'use client';
 import React from 'react'; // Añade esta línea
 import { Container, Typography, Grid, Box, TextField, Button, Snackbar, Alert } from '@mui/material';
-import { CircularProgress, Zoom, Slide } from '@mui/material';  // Updated imports
+import { CircularProgress, Zoom, Slide } from '@mui/material'; // Updated imports
 import { useState } from 'react';
 import { validateEmail, validateName, validatePhone, validateMessage } from '../../utils/validations';
 import { getImagePath } from '../../utils/imagePath';
@@ -34,7 +34,7 @@ function Contacto() {
   const handleBlur = (event) => {
     const { name, value } = event.target;
     const error = validateField(name, value);
-    setErrors(prev => ({
+    setErrors((prev) => ({
       ...prev,
       [name]: error
     }));
@@ -75,7 +75,7 @@ function Contacto() {
         body: JSON.stringify(data)
       });
 
-      const result = await response.json();      
+      const result = await response.json();
 
       if (!response.ok) throw new Error(result.error || 'Error al enviar');
 
@@ -83,9 +83,9 @@ function Contacto() {
       setOpenSnackbar(true);
       event.target.reset();
     } catch (error) {
-      setSubmitStatus({ 
-        message: 'Error al enviar el formulario, disculpe las molestias', 
-        isError: true 
+      setSubmitStatus({
+        message: 'Error al enviar el formulario, disculpe las molestias',
+        isError: true
       });
       setOpenSnackbar(true);
     } finally {
@@ -98,54 +98,66 @@ function Contacto() {
   };
 
   return (
-    <Container maxWidth={false} sx={{ 
-      py: 8, 
-      minHeight: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      justifyContent: 'center',
-      width: '100vw',
-      marginLeft: 'calc(-50vw + 50%)',
-      marginRight: 'calc(-50vw + 50%)',
-      backgroundImage: `url("${getImagePath('/images/home/contact.avif')}")`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed',
-      alignItems: 'center',
-    }}>
-
-
+    <Container
+      maxWidth={false}
+      sx={{
+        py: 8,
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        marginRight: 'calc(-50vw + 50%)',
+        backgroundImage: `url("${getImagePath('/images/home/contact.avif')}")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+        alignItems: 'center'
+      }}
+    >
       <Grid container spacing={4} justifyContent="center">
         <Grid item xs={12} md={6}>
           <Zoom in timeout={1000}>
-            <Box sx={{ 
-              p: 4,
-              borderRadius: '16px',
-              background: 'rgba(0, 0, 0, 0.7)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.18)',
-            }}>
-              <Typography variant="h4" gutterBottom align="center" sx={{ 
-                color: '#FFD700',
-                mb: 4,
-                fontWeight: 'bold'
-              }}>
-               Más información
+            <Box
+              sx={{
+                p: 4,
+                borderRadius: '16px',
+                background: 'rgba(0, 0, 0, 0.7)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.18)'
+              }}
+            >
+              <Typography
+                variant="h4"
+                gutterBottom
+                align="center"
+                sx={{
+                  color: '#FFD700',
+                  mb: 4,
+                  fontWeight: 'bold'
+                }}
+              >
+                Más información
               </Typography>
-              <Typography variant="body1" align="center" sx={{ 
-                color: 'white',
-                mb: 4 
-              }}>
+              <Typography
+                variant="body1"
+                align="center"
+                sx={{
+                  color: 'white',
+                  mb: 4
+                }}
+              >
                 Para proteger y controlar tu negocio te ofrecemos un sistema de intrusión a medida, solo tenés que dejarnos tus datos y nos estaremos comunicando para contarte en cómo podemos ayudarte
               </Typography>
-              <Box 
-                component="form" 
-                noValidate 
-                onSubmit={handleSubmit} 
-                sx={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  gap: 3 
+              <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 3
                 }}
               >
                 <TextField
@@ -192,7 +204,7 @@ function Contacto() {
                       borderColor: '#FFD700',
                       '& fieldset': { borderColor: errors.email ? 'error.main' : '#FFD700' },
                       '&:hover fieldset': { borderColor: '#FFD700' },
-                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)'
                     }
                   }}
                   FormHelperTextProps={{
@@ -214,7 +226,7 @@ function Contacto() {
                       borderColor: '#FFD700',
                       '& fieldset': { borderColor: errors.phone ? 'error.main' : '#FFD700' },
                       '&:hover fieldset': { borderColor: '#FFD700' },
-                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)'
                     }
                   }}
                   FormHelperTextProps={{
@@ -252,12 +264,12 @@ function Contacto() {
                     sx: { color: 'error.main' }
                   }}
                 />
-                <Button 
+                <Button
                   type="submit"
                   variant="contained"
                   size="large"
                   disabled={isSubmitting}
-                  sx={{ 
+                  sx={{
                     mt: 2,
                     py: 1.5,
                     backgroundColor: '#FFD700',
@@ -289,61 +301,53 @@ function Contacto() {
         </Grid>
       </Grid>
       <Slide direction="left" in timeout={1200}>
-              <Box sx={{
-                 display: 'flex', 
-                 alignItems: 'center',
-                 flexDirection: 'column',
-                 p: 2,
-                 borderRadius: 2,
-                 bgcolor: 'background.paper',
-                 boxShadow: 1,
-                 transition: 'transform 0.3s ease',
-                 '&:hover': {
-                   transform: 'translateX(10px)'
-                 },
-                 background: 'linear-gradient(135deg, #0D0D0D, #1C1C1C)',
-                 background: 'rgba(0, 5, 5, 0.25);', /* fondo semitransparente */
-                 borderRadius: '16px',
-                 padding: '2rem',
-                 color: 'white',
-                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
-                 backdropFilter: 'blur(10px)',/* <- el efecto de vidrio */
-                 border: '1px solid rgba(255, 255, 255, 0.18)',
-                 textAlign: 'center',
-                 marginTop: '2rem',
-              }}>
-                <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }}>
-                  ¿Por qué elegirnos?
-                </Typography>
-                <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
-                En SISE ofrecemos soluciones de seguridad personalizadas y efectivas. Contamos con un equipo técnico con más de 20 años de experiencia y utilizamos tecnología de vanguardia.                </Typography>
-                <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
-                Te asesoramos para diseñar e instalar sistemas a medida, preservando la estética del espacio y utilizando equipamiento de marcas líderes en el rubro.                </Typography>
-                <Typography variant="body1" align="center" sx={{ maxWidth: '900px', mx: 'auto' }}>
-                <Button 
-                      variant="contained" 
-                      color="primary" 
-                      size="large" 
-                      href="/nosotros"
-                      sx={{ mt: 2 }}
-                    >
-                      Nosotros
-                    </Button>                
-                </Typography>
-              </Box>
-            </Slide>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+            p: 2,
+            borderRadius: 2,
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            transition: 'transform 0.3s ease',
+            '&:hover': {
+              transform: 'translateX(10px)'
+            },
+            background: 'linear-gradient(135deg, #0D0D0D, #1C1C1C)',
+            background: 'rgba(0, 5, 5, 0.25);' /* fondo semitransparente */,
+            borderRadius: '16px',
+            padding: '2rem',
+            color: 'white',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
+            backdropFilter: 'blur(10px)' /* <- el efecto de vidrio */,
+            border: '1px solid rgba(255, 255, 255, 0.18)',
+            textAlign: 'center',
+            marginTop: '2rem'
+          }}
+        >
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }}>
+            ¿Por qué elegirnos?
+          </Typography>
+          <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
+            En SISE ofrecemos soluciones de seguridad personalizadas y efectivas. Contamos con un equipo técnico con más de 30 años de experiencia y utilizamos tecnología de vanguardia.{' '}
+          </Typography>
+          <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
+            Te asesoramos para diseñar e instalar sistemas a medida, preservando la estética del espacio y utilizando equipamiento de marcas líderes en el rubro.{' '}
+          </Typography>
+          <Typography variant="body1" align="center" sx={{ maxWidth: '900px', mx: 'auto' }}>
+            <Button variant="contained" color="primary" size="large" href="/nosotros" sx={{ mt: 2 }}>
+              Nosotros
+            </Button>
+          </Typography>
+        </Box>
+      </Slide>
 
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={4000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        TransitionComponent={Slide}
-      >
-        <Alert 
-          onClose={handleCloseSnackbar} 
+      <Snackbar open={openSnackbar} autoHideDuration={4000} onClose={handleCloseSnackbar} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} TransitionComponent={Slide}>
+        <Alert
+          onClose={handleCloseSnackbar}
           severity={submitStatus.isError ? 'error' : 'success'}
-          sx={{ 
+          sx={{
             width: '100%',
             boxShadow: 3,
             borderRadius: 2
