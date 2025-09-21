@@ -44,7 +44,14 @@ function Footer() {
   };
 
   return (
-    <Box sx={{ bgcolor: '#1a1a1a', color: 'white', py: 4, mt: 'auto' }}>
+    <Box sx={{ 
+      bgcolor: '#1a1a1a', 
+      color: 'white', 
+      py: 4, 
+      mt: 'auto',
+      borderTop: '3px solid #ffff00',
+      boxShadow: '0 -4px 20px rgba(255, 255, 0, 0.2)'
+    }}>
       <Container maxWidth="lg">
         <Box sx={{ 
           display: 'flex', 
@@ -56,11 +63,12 @@ function Footer() {
           <Box sx={{ flex: 1 }}>
             <Typography variant="h6" sx={{ 
               mb: 2, 
-              color: '#fff',
-              borderBottom: '1px solid rgba(255,255,255,0.3)',
+              color: '#ffff00',
+              borderBottom: '2px solid #ffff00',
               pb: 1,
               textTransform: 'uppercase',
-              letterSpacing: '1px'
+              letterSpacing: '1px',
+              fontWeight: 'bold'
             }}>
               SISE
             </Typography>
@@ -75,9 +83,15 @@ function Footer() {
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
               Conocé nuestras <Link href={getNonNavbarPath("/politicas-de-privacidad")} sx={{ 
-                color: '#FDEC06', 
+                color: '#ffff00', 
                 textDecoration: 'none',
-                '&:hover': { textDecoration: 'underline' }
+                fontWeight: 'bold',
+                '&:hover': { 
+                  color: '#ff0000',
+                  textDecoration: 'underline',
+                  textShadow: '0 0 5px #ff0000'
+                },
+                transition: 'all 0.3s ease'
               }}>
                 políticas de privacidad
               </Link>
@@ -94,27 +108,41 @@ function Footer() {
                   href="https://www.facebook.com/sise.com.ar" 
                   target="_blank" 
                   sx={{ 
-                    bgcolor: '#3b5998',
+                    bgcolor: '#ffff00',
                     borderRadius: '50%',
                     p: 1,
                     display: 'flex',
-                    '&:hover': { opacity: 0.8 }
+                    border: '2px solid #ffff00',
+                    '&:hover': { 
+                      bgcolor: '#ff0000',
+                      borderColor: '#ff0000',
+                      transform: 'scale(1.1)',
+                      boxShadow: '0 0 10px #ff0000'
+                    },
+                    transition: 'all 0.3s ease'
                   }}
                 >
-                  <FacebookIcon sx={{ color: 'white', fontSize: 20 }} />
+                  <FacebookIcon sx={{ color: '#000000', fontSize: 20 }} />
                 </Link>
                 <Link 
                   href="https://www.instagram.com/sise_seguridad" 
                   target="_blank" 
                   sx={{ 
-                    bgcolor: '#833AB4',
+                    bgcolor: '#ffff00',
                     borderRadius: '50%',
                     p: 1,
                     display: 'flex',
-                    '&:hover': { opacity: 0.8 }
+                    border: '2px solid #ffff00',
+                    '&:hover': { 
+                      bgcolor: '#ff0000',
+                      borderColor: '#ff0000',
+                      transform: 'scale(1.1)',
+                      boxShadow: '0 0 10px #ff0000'
+                    },
+                    transition: 'all 0.3s ease'
                   }}
                 >
-                  <InstagramIcon sx={{ color: 'white', fontSize: 20 }} />
+                  <InstagramIcon sx={{ color: '#000000', fontSize: 20 }} />
                 </Link>
               </Box>
             </Box>
@@ -124,45 +152,61 @@ function Footer() {
           <Box sx={{ flex: 1 }}>
             <Typography variant="h6" sx={{ 
               mb: 2, 
-              color: '#fff',
-              borderBottom: '1px solid rgba(255,255,255,0.3)',
+              color: '#ffff00',
+              borderBottom: '2px solid #ffff00',
               pb: 1,
               textTransform: 'uppercase',
-              letterSpacing: '1px'
+              letterSpacing: '1px',
+              fontWeight: 'bold'
             }}>
               Contacto
             </Typography>
             <Typography variant="body2" sx={{ mb: 1 }}>
-              Oficina <Box component="span" sx={{ color: '#FDEC06' }}>+54 11 3221-5517</Box>
+              Oficina <Box component="span" sx={{ color: '#ffff00', fontWeight: 'bold' }}>+54 11 3221-5517</Box>
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              Fax <Box component="span" sx={{ color: '#FDEC06' }}>+54 11 3221 2100-5517</Box>
+              Fax <Box component="span" sx={{ color: '#ffff00', fontWeight: 'bold' }}>+54 11 3221 2100-5517</Box>
             </Typography>
 
             <Box sx={{ mb: 3 }}>
               <Typography variant="body2" component="a" href="mailto:ventas@sise.com.ar" sx={{ 
                 display: 'block',
-                color: '#FDEC06',
+                color: '#ffff00',
                 textDecoration: 'none',
                 mb: 1,
-                '&:hover': { opacity: 0.8 }
+                fontWeight: 'bold',
+                '&:hover': { 
+                  color: '#ff0000',
+                  textShadow: '0 0 5px #ff0000'
+                },
+                transition: 'all 0.3s ease'
               }}>
                 ventas@sise.com.ar
               </Typography>
               <Typography variant="body2" component="a" href="mailto:info@sise.com.ar" sx={{ 
                 display: 'block',
-                color: '#FDEC06',
+                color: '#ffff00',
                 textDecoration: 'none',
                 mb: 1,
-                '&:hover': { opacity: 0.8 }
+                fontWeight: 'bold',
+                '&:hover': { 
+                  color: '#ff0000',
+                  textShadow: '0 0 5px #ff0000'
+                },
+                transition: 'all 0.3s ease'
               }}>
                 info@sise.com.ar
               </Typography>
               <Typography variant="body2" component="a" href="mailto:administracion@sise.com.ar" sx={{ 
                 display: 'block',
-                color: '#FDEC06',
+                color: '#ffff00',
                 textDecoration: 'none',
-                '&:hover': { opacity: 0.8 }
+                fontWeight: 'bold',
+                '&:hover': { 
+                  color: '#ff0000',
+                  textShadow: '0 0 5px #ff0000'
+                },
+                transition: 'all 0.3s ease'
               }}>
                 administracion@sise.com.ar
               </Typography>

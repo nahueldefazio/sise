@@ -145,7 +145,7 @@ function Alarma() {
         }}
       >
         <Fade in timeout={1000}>
-          <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 6, color: '#FDEC06' }}>
+          <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 8, mt: 4, color: '#ffff00', fontWeight: 'bold', textShadow: '4px 4px 8px rgba(0,0,0,0.8)', fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, letterSpacing: '0.03em', lineHeight: { xs: 1.3, md: 1.4 } }}>
             Sistema de Alarmas
           </Typography>
         </Fade>
@@ -164,11 +164,11 @@ function Alarma() {
                   }
                 }}
               >
-                <Typography variant="h4" gutterBottom color="primary" sx={{ mb: 4 }}>
+                <Typography variant="h4" gutterBottom sx={{ mb: 6, mt: 3, color: '#ffff00', fontWeight: 'bold', textShadow: '3px 3px 6px rgba(0,0,0,0.7)', fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2rem' }, letterSpacing: '0.02em', lineHeight: { xs: 1.4, md: 1.5 } }}>
                   ¿Querés tener el control de tu negocio?
                 </Typography>
 
-                <Typography variant="body1" paragraph sx={{ mb: 4, color: 'primary.main' }}>
+                <Typography variant="body1" paragraph sx={{ mb: 6, color: '#ffff00', fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.4rem' }, fontWeight: '500', letterSpacing: '0.01em', lineHeight: { xs: 1.6, md: 1.7 }, px: { xs: 2, md: 3 } }}>
                   Te ofrecemos un sistema de intrusión que consiste de varios elementos:
                 </Typography>
 
@@ -219,23 +219,23 @@ function Alarma() {
                     my: 8
                   }}
                 >
-                  <Typography variant="body1" paragraph sx={{ mt: 3 }}>
+                  <Typography variant="body1" paragraph sx={{ mt: 4, fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.7, md: 1.8 }, letterSpacing: '0.01em', textAlign: 'justify', px: { xs: 2, md: 3 } }}>
                     Este gabinete suele estar instalado en un lugar oculto, ya que es el corazón del sistema de alarma. A esta central, normalmente se le conecta un teclado cerca de la puerta para
                     poder realizar las activaciones, desactivaciones y monitorear otras funciones más.
                   </Typography>
 
-                  <Typography variant="body1" paragraph>
+                  <Typography variant="body1" paragraph sx={{ fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.7, md: 1.8 }, letterSpacing: '0.01em', textAlign: 'justify', px: { xs: 2, md: 3 } }}>
                     Ante una intrusión no deseada, el sensor se detecta, envía la señal a la central, la misma está programada para dar el tiempo necesario para realizar la desactivación del mismo o
                     dispara la sirena alertando de la intrusión.
                   </Typography>
 
-                  <Typography variant="body1" paragraph>
+                  <Typography variant="body1" paragraph sx={{ fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.7, md: 1.8 }, letterSpacing: '0.01em', textAlign: 'justify', px: { xs: 2, md: 3 } }}>
                     Los sistemas de seguridad hoy en día nos dan muchísimas más opciones en funcionalidad y para nuestra comodidad, como son los controles remotos, sensores inalámbricos y
                     comunicadores a nuestros celulares o a una estación de monitoreo.
                   </Typography>
                 </Box>
 
-                <Typography variant="h6" sx={{ mt: 4, color: 'primary.main', fontStyle: 'italic' }}>
+                <Typography variant="h6" sx={{ mt: 6, color: '#ffff00', fontStyle: 'italic', fontWeight: 'bold', textShadow: '3px 3px 6px rgba(0,0,0,0.7)', fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.4rem' }, letterSpacing: '0.01em', lineHeight: { xs: 1.6, md: 1.7 }, px: { xs: 2, md: 3 }, textAlign: 'center' }}>
                   Te asesoramos para que encuentres el sistema que más se adecue a tus necesidades.
                 </Typography>
               </Paper>
@@ -269,13 +269,18 @@ function Alarma() {
                   align="center"
                   sx={{
                     fontWeight: 'bold',
-                    mb: 3
+                    mb: 5,
+                    mt: 3,
+                    fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
+                    textShadow: '4px 4px 8px rgba(0,0,0,0.8)',
+                    letterSpacing: '0.03em',
+                    lineHeight: { xs: 1.3, md: 1.4 }
                   }}
                 >
                   CONSTRUYE UNA
                 </Typography>
 
-                <Typography variant="body1" paragraph align="center">
+                <Typography variant="body1" paragraph align="center" sx={{ fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.7, md: 1.8 }, letterSpacing: '0.01em', px: { xs: 3, md: 4 }, textAlign: 'justify' }}>
                   Para proteger y controlar tu negocio te ofrecemos un sistema de intrusión a medida, solo tenés que dejarnos tus datos y nos estaremos comunicando para contarte en cómo podemos
                   ayudarte
                 </Typography>
@@ -287,24 +292,30 @@ function Alarma() {
                   sx={{
                     mt: 4,
                     '& .MuiInputLabel-root': {
-                      color: '#FFD700'
+                      color: '#ffff00',
+                      fontWeight: 'bold'
                     },
                     '& .MuiInputBase-input': {
-                      color: '#FFD700'
+                      color: '#ffff00',
+                      fontWeight: 'bold'
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
-                        borderColor: '#FFD700'
+                        borderColor: '#ffff00',
+                        borderWidth: 2
                       },
                       '&:hover fieldset': {
-                        borderColor: '#DAA520'
+                        borderColor: '#ffff00',
+                        borderWidth: 2
                       },
                       '&.Mui-focused fieldset': {
-                        borderColor: '#FFD700'
+                        borderColor: '#ff0000',
+                        borderWidth: 2
                       }
                     },
                     '& .MuiFormHelperText-root': {
-                      color: '#FFD700'
+                      color: '#ffff00',
+                      fontWeight: 'bold'
                     }
                   }}
                 >
@@ -342,7 +353,7 @@ function Alarma() {
                         Enviando...
                       </>
                     ) : (
-                      'Quiero construir mi aplicación'
+                      'Enviar mi consulta'
                     )}
                   </Button>
                 </Box>

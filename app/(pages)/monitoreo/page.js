@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Container, Typography, Paper, Grid, Box, TextField, Button, Fade, Slide, Zoom, CircularProgress, Snackbar, Alert } from '@mui/material';
+import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 import SecurityIcon from '@mui/icons-material/Security';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
@@ -110,20 +111,47 @@ function Monitoreo() {
   };
 
   return (
-      <Box sx={{ 
-        background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
-        minHeight: '100vh',
-        pt: 4,
-        color: 'white'
+    <Box sx={{
+      position: 'relative',
+      minHeight: '100vh',
+      overflow: 'hidden'
+    }}>
+      {/* Background Image with Blur - Full Screen */}
+      <Box sx={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0
       }}>
-      <Container disableGutters maxWidth={false} sx={{
-        py: 10, 
-        px: { xs: 2, md: 20 },
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/images/home/alarma4.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}>
+        <Image
+          src="/images/home/alarma4.jpg"
+          alt="Central de monitoreo SISE funcionando 24/7 con personal especializado atendiendo alarmas y emergencias de seguridad"
+          fill
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center',
+            transform: 'scale(1.1)'
+          }}
+          quality={80}
+          priority
+        />
+        
+        {/* Dark overlay for better content readability */}
+        <Box sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.85) 100%)',
+          backdropFilter: 'blur(8px)',
+          zIndex: 1
+        }} />
+      </Box>
+      
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2, py: 8 }}>
         <Fade in timeout={1000}>
           <Box>
             <Box sx={{ 
@@ -132,13 +160,13 @@ function Monitoreo() {
               alignItems: 'center',
               gap: 1
             }}>
-              <Typography variant="body1" component="span" sx={{ color: '#FFD700' }}>
+              <Typography variant="body1" component="span" sx={{ color: '#ffff00', fontWeight: 'bold' }}>
                 Inicio
               </Typography>
-              <Typography variant="body1" component="span" sx={{ color: '#FFD700' }}>
+              <Typography variant="body1" component="span" sx={{ color: '#ffff00', fontWeight: 'bold' }}>
                 {' > '}
               </Typography>
-              <Typography variant="body1" component="span" sx={{ color: '#FFD700', fontWeight: 'bold' }}>
+              <Typography variant="body1" component="span" sx={{ color: '#ffff00', fontWeight: 'bold' }}>
                 Monitoreo de Alarmas
               </Typography>
             </Box>
@@ -148,13 +176,14 @@ function Monitoreo() {
               component="h1" 
               gutterBottom 
               sx={{ 
-                mb: 6,
+                mb: 8,
+                mt: 4,
                 fontWeight: 'bold',
-                background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-                letterSpacing: '2px'
+                color: '#ffff00',
+                textShadow: '4px 4px 8px rgba(0,0,0,0.8)',
+                letterSpacing: '0.03em',
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                lineHeight: { xs: 1.3, md: 1.4 }
               }}
             >
               Monitoreo de Alarmas 24/7
@@ -173,17 +202,17 @@ function Monitoreo() {
                     }}>
                       {[
                         {
-                          icon: <SecurityIcon sx={{ fontSize: 60, color: '#FFD700' }} />,
+                          icon: <SecurityIcon sx={{ fontSize: 60, color: '#ffff00' }} />,
                           title: 'Seguridad Continua',
                           desc: 'Monitoreo las 24 horas, los 365 días del año'
                         },
                         {
-                          icon: <CameraAltIcon sx={{ fontSize: 60, color: '#FFD700' }} />,
+                          icon: <CameraAltIcon sx={{ fontSize: 60, color: '#ffff00' }} />,
                           title: 'Video Verificación',
                           desc: 'Confirmación visual de eventos en tiempo real'
                         },
                         {
-                          icon: <SupportAgentIcon sx={{ fontSize: 60, color: '#FFD700' }} />,
+                          icon: <SupportAgentIcon sx={{ fontSize: 60, color: '#ffff00' }} />,
                           title: 'Soporte Inmediato',
                           desc: 'Personal capacitado para cada emergencia'
                         }
@@ -207,10 +236,10 @@ function Monitoreo() {
                           }}
                         >
                           {item.icon}
-                          <Typography variant="h6" sx={{ my: 2, color: '#FFD700' }}>
+                          <Typography variant="h6" sx={{ my: 3, color: '#ffff00', fontWeight: 'bold', fontSize: { xs: '1.2rem', sm: '1.3rem', md: '1.4rem' }, textShadow: '3px 3px 6px rgba(0,0,0,0.7)', letterSpacing: '0.02em', lineHeight: { xs: 1.4, md: 1.5 } }}>
                             {item.title}
                           </Typography>
-                          <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                          <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.6, md: 1.7 }, letterSpacing: '0.01em', px: { xs: 2, md: 3 } }}>
                             {item.desc}
                           </Typography>
                         </Paper>
@@ -218,25 +247,38 @@ function Monitoreo() {
                     </Box>
 
                     <Typography variant="h4" gutterBottom sx={{ 
-                      color: '#FFD700',
+                      color: '#ffff00',
                       fontWeight: 'bold',
-                      mb: 3
+                      mb: 5,
+                      mt: 3,
+                      fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
+                      textShadow: '4px 4px 8px rgba(0,0,0,0.8)',
+                      letterSpacing: '0.03em',
+                      lineHeight: { xs: 1.3, md: 1.4 }
                     }}>
                       ¿Preocupado por la seguridad de tu negocio o tu hogar?
                     </Typography>
 
                     {/* Content sections with improved styling */}
                     <Box sx={{ 
+                      px: { xs: 2, md: 3 },
                       '& .MuiTypography-body1': { 
                         color: 'rgba(255, 255, 255, 0.9)',
-                        fontSize: '1.1rem',
-                        lineHeight: 1.8,
-                        mb: 4
+                        fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                        lineHeight: { xs: 1.8, md: 1.9 },
+                        mb: 5,
+                        letterSpacing: '0.01em',
+                        textAlign: 'justify'
                       },
                       '& .MuiTypography-h5': {
-                        color: '#FFD700',
+                        color: '#ffff00',
                         fontWeight: 'bold',
-                        mb: 3
+                        mb: 4,
+                        mt: 3,
+                        fontSize: { xs: '1.4rem', sm: '1.6rem', md: '1.8rem' },
+                        textShadow: '3px 3px 6px rgba(0,0,0,0.7)',
+                        letterSpacing: '0.02em',
+                        lineHeight: { xs: 1.4, md: 1.5 }
                       }
                     }}>
                       <Typography variant="h5">
@@ -276,7 +318,7 @@ function Monitoreo() {
                       border: '1px solid rgba(255, 215, 0, 0.3)',
                       backdropFilter: 'blur(10px)'
                     }}>
-                      <Typography variant="body1" sx={{ color: '#FFD700' }}>
+                      <Typography variant="body1" sx={{ color: '#ffff00', fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.7, md: 1.8 }, letterSpacing: '0.01em', px: { xs: 2, md: 3 }, textAlign: 'justify', textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
                         No solo ofrecemos tecnología de avanzada sino también al personal altamente capacitado para cubrir todo tipo de emergencia.
                       </Typography>
                     </Box>
@@ -296,15 +338,26 @@ function Monitoreo() {
               border: '1px solid rgba(255, 255, 255, 0.18)',
             }}>
               <Typography variant="h4" gutterBottom align="center" sx={{ 
-                color: '#FFD700',
-                mb: 4,
-                fontWeight: 'bold'
+                color: '#ffff00',
+                mb: 6,
+                mt: 3,
+                fontWeight: 'bold',
+                fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
+                textShadow: '4px 4px 8px rgba(0,0,0,0.8)',
+                letterSpacing: '0.03em',
+                lineHeight: { xs: 1.3, md: 1.4 }
               }}>
                Más información
               </Typography>
               <Typography variant="body1" align="center" sx={{ 
                 color: 'white',
-                mb: 4 
+                mb: 6,
+                fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                lineHeight: { xs: 1.7, md: 1.8 },
+                letterSpacing: '0.01em',
+                px: { xs: 2, md: 3 },
+                textAlign: 'justify',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.6)'
               }}>
                 Para proteger y controlar tu negocio te ofrecemos un sistema de intrusión a medida, solo tenés que dejarnos tus datos y nos estaremos comunicando para contarte en cómo podemos ayudarte
               </Typography>
@@ -331,11 +384,11 @@ function Monitoreo() {
                     sx: {
                       color: 'white',
                       '& input::placeholder': {
-                        color: '#FFD700',
+                        color: '#ffff00',
                         opacity: 0.7
                       },
-                      '& fieldset': { borderColor: errors.name ? 'error.main' : '#FFD700' },
-                      '&:hover fieldset': { borderColor: errors.name ? 'error.main' : '#FFD700' },
+                      '& fieldset': { borderColor: errors.name ? 'error.main' : '#ffff00' },
+                      '&:hover fieldset': { borderColor: errors.name ? 'error.main' : '#ffff00' },
                       backgroundColor: 'rgba(255, 255, 255, 0.3)',
                       '&.Mui-disabled': {
                         color: 'white',
@@ -358,10 +411,10 @@ function Monitoreo() {
                   disabled={isSubmitting}
                   InputProps={{
                     sx: {
-                      color: '#FFD700',
-                      borderColor: '#FFD700',
-                      '& fieldset': { borderColor: errors.email ? 'error.main' : '#FFD700' },
-                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      color: '#ffff00',
+                      borderColor: '#ffff00',
+                      '& fieldset': { borderColor: errors.email ? 'error.main' : '#ffff00' },
+                      '&:hover fieldset': { borderColor: '#ffff00' },
                       backgroundColor: 'rgba(255, 255, 255, 0.3)',
                     }
                   }}
@@ -380,10 +433,10 @@ function Monitoreo() {
                   disabled={isSubmitting}
                   InputProps={{
                     sx: {
-                      color: '#FFD700',
-                      borderColor: '#FFD700',
-                      '& fieldset': { borderColor: errors.phone ? 'error.main' : '#FFD700' },
-                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      color: '#ffff00',
+                      borderColor: '#ffff00',
+                      '& fieldset': { borderColor: errors.phone ? 'error.main' : '#ffff00' },
+                      '&:hover fieldset': { borderColor: '#ffff00' },
                       backgroundColor: 'rgba(255, 255, 255, 0.3)',
                     }
                   }}
@@ -406,11 +459,11 @@ function Monitoreo() {
                     sx: {
                       color: 'white',
                       '& textarea::placeholder': {
-                        color: '#FFD700',
+                        color: '#ffff00',
                         opacity: 0.7
                       },
-                      '& fieldset': { borderColor: errors.message ? 'error.main' : '#FFD700' },
-                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      '& fieldset': { borderColor: errors.message ? 'error.main' : '#ffff00' },
+                      '&:hover fieldset': { borderColor: '#ffff00' },
                       backgroundColor: 'rgba(255, 255, 255, 0.3)',
                       '&.Mui-disabled': {
                         color: 'white',
@@ -428,17 +481,22 @@ function Monitoreo() {
                   size="large"
                   disabled={isSubmitting}
                   sx={{ 
-                    mt: 2,
-                    py: 1.5,
-                    backgroundColor: '#FFD700',
+                    mt: 3,
+                    py: 2,
+                    px: 4,
+                    backgroundColor: '#ffff00',
                     color: 'black',
                     fontWeight: 'bold',
+                    fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                    letterSpacing: '0.02em',
                     '&:hover': {
-                      backgroundColor: '#FFD700',
-                      opacity: 0.9
+                      backgroundColor: '#ff0000',
+                      color: '#ffffff',
+                      transform: 'translateY(-3px)',
+                      boxShadow: '0 6px 20px rgba(255, 0, 0, 0.4)'
                     },
                     '&.Mui-disabled': {
-                      backgroundColor: '#FFD700',
+                      backgroundColor: '#ffff00',
                       opacity: 0.7,
                       color: 'rgba(0, 0, 0, 0.7)'
                     }

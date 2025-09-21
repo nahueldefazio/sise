@@ -8,20 +8,21 @@ import { getImagePath } from '../../utils/imagePath';
 
 // Styled component for client logo container
 const ClientLogoContainer = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
-  height: '200px',
+  padding: theme.spacing(5),
+  height: '220px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: 'rgba(255, 255, 255, 0.1)',
-  backdropFilter: 'blur(10px)',
-  borderRadius: '16px',
-  border: '1px solid rgba(255, 255, 255, 0.18)',
+  background: 'rgba(255, 255, 255, 0.12)',
+  backdropFilter: 'blur(15px)',
+  borderRadius: '20px',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
   transition: 'all 0.3s ease',
   '&:hover': {
-    transform: 'translateY(-10px)',
-    background: 'rgba(255, 255, 255, 0.15)',
-    boxShadow: '0 8px 32px rgba(255, 215, 0, 0.15)',
+    transform: 'translateY(-15px)',
+    background: 'rgba(255, 255, 255, 0.18)',
+    boxShadow: '0 15px 35px rgba(255, 215, 0, 0.2)',
   },
   '&::before': {
     content: '""',
@@ -29,8 +30,8 @@ const ClientLogoContainer = styled(Paper)(({ theme }) => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '4px',
-    background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
+    height: '5px',
+    background: '#ffff00',
   }
 }));
 
@@ -76,10 +77,59 @@ function Clientes() {
     <Box sx={{ 
       background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
       minHeight: '100vh',
-      py: 8,
-      color: 'white'
+      color: 'white',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <Container maxWidth="lg">
+      {/* Background Image with Blur - Full Screen */}
+      <Box sx={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0
+      }}>
+        <Image
+          src="/images/home/server1.jpg"
+          alt="Tecnología empresarial y servidores que respaldan los servicios de seguridad electrónica que las empresas confían en SISE"
+          fill
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center',
+            transform: 'scale(1.1)'
+          }}
+          quality={80}
+          priority
+        />
+        
+        {/* Dark overlay for better content readability */}
+        <Box sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.95) 100%)',
+          zIndex: 1
+        }} />
+        
+        {/* Corporate Pattern Overlay */}
+        <Box sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: `
+            radial-gradient(circle at 20% 80%, rgba(255, 255, 0, 0.1) 0%, transparent 60%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 0, 0.1) 0%, transparent 60%),
+            radial-gradient(circle at 40% 40%, rgba(255, 255, 0, 0.05) 0%, transparent 50%)`,
+          zIndex: 2
+        }} />
+      </Box>
+      
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 3, py: 8 }}>
         <Fade in timeout={1000}>
           <Box>
             <Box sx={{ 
@@ -88,34 +138,50 @@ function Clientes() {
               alignItems: 'center',
               gap: 1
             }}>
-              <Typography variant="body1" component="span" sx={{ color: '#FFD700' }}>
+              <Typography variant="body1" component="span" sx={{ color: '#ffff00' }}>
                 Inicio
               </Typography>
-              <Typography variant="body1" component="span" sx={{ color: '#FFD700' }}>
+              <Typography variant="body1" component="span" sx={{ color: '#ffff00' }}>
                 {' > '}
               </Typography>
-              <Typography variant="body1" component="span" sx={{ color: '#FFD700', fontWeight: 'bold' }}>
+              <Typography variant="body1" component="span" sx={{ color: '#ffff00', fontWeight: 'bold' }}>
                 Clientes
               </Typography>
             </Box>
 
             <Typography 
-              variant="h2" 
+              variant="h1" 
               component="h1" 
               gutterBottom 
               align="center"
               sx={{
-                mb: 8,
+                mb: 10,
+                mt: 4,
                 fontWeight: 'bold',
-                background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-                letterSpacing: '2px'
+                color: '#ffff00',
+                textShadow: '4px 4px 8px rgba(0,0,0,0.9)',
+                letterSpacing: '0.04em',
+                fontSize: { xs: '2.8rem', md: '3.8rem', lg: '4.3rem' },
+                textTransform: 'uppercase',
+                lineHeight: { xs: 1.2, md: 1.3 }
               }}
             >
               Empresas que Confían en Nosotros
             </Typography>
+            
+            <Box sx={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              mb: 6 
+            }}>
+              <Box sx={{
+                width: '140px',
+                height: '5px',
+                background: '#ffff00',
+                borderRadius: '3px',
+                boxShadow: '0 3px 12px rgba(255, 255, 0, 0.5)'
+              }} />
+            </Box>
 
             <Grid container spacing={4} justifyContent="center" ref={ref}>
               {clientLogos.map((logo, index) => (

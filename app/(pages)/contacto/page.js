@@ -1,6 +1,7 @@
 'use client';
 import React from 'react'; // Añade esta línea
 import { Container, Typography, Grid, Box, TextField, Button, Snackbar, Alert } from '@mui/material';
+import Image from 'next/image';
 import { CircularProgress, Zoom, Slide } from '@mui/material'; // Updated imports
 import { useState } from 'react';
 import { validateEmail, validateName, validatePhone, validateMessage } from '../../utils/validations';
@@ -98,44 +99,89 @@ function Contacto() {
   };
 
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        py: 8,
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        width: '100vw',
-        marginLeft: 'calc(-50vw + 50%)',
-        marginRight: 'calc(-50vw + 50%)',
-        backgroundImage: `url("${getImagePath('/images/home/contact.avif')}")`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        alignItems: 'center'
-      }}
-    >
+    <Box sx={{
+      position: 'relative',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      overflow: 'hidden'
+    }}>
+      {/* Background Image with Blur */}
+      <Box sx={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0
+      }}>
+        <Image
+          src="/images/home/contact.avif"
+          alt="Oficina de contacto SISE donde atendemos consultas sobre sistemas de seguridad electrónica, alarmas y monitoreo"
+          fill
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center',
+            transform: 'scale(1.1)'
+          }}
+          quality={85}
+          priority
+        />
+        
+        {/* Dark overlay for better content readability */}
+        <Box sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.9) 100%)',
+          zIndex: 1
+        }} />
+      </Box>
+      
+      <Container
+        maxWidth={false}
+        sx={{
+          py: 8,
+          position: 'relative',
+          zIndex: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          width: '100vw',
+          marginLeft: 'calc(-50vw + 50%)',
+          marginRight: 'calc(-50vw + 50%)',
+          alignItems: 'center'
+        }}
+      >
       <Grid container spacing={4} justifyContent="center">
         <Grid item xs={12} md={6}>
           <Zoom in timeout={1000}>
             <Box
-              sx={{
-                p: 4,
-                borderRadius: '16px',
-                background: 'rgba(0, 0, 0, 0.7)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.18)'
-              }}
+                sx={{
+                  p: { xs: 5, md: 6 },
+                  borderRadius: '20px',
+                  background: 'rgba(0, 0, 0, 0.8)',
+                  backdropFilter: 'blur(15px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                }}
             >
               <Typography
                 variant="h4"
                 gutterBottom
                 align="center"
                 sx={{
-                  color: '#FFD700',
-                  mb: 4,
-                  fontWeight: 'bold'
+                  color: '#ffff00',
+                  mb: 6,
+                  mt: 2,
+                  fontWeight: 'bold',
+                  fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
+                  textShadow: '3px 3px 6px rgba(0,0,0,0.7)',
+                  letterSpacing: '0.02em',
+                  lineHeight: { xs: 1.3, md: 1.4 }
                 }}
               >
                 Más información
@@ -145,7 +191,12 @@ function Contacto() {
                 align="center"
                 sx={{
                   color: 'white',
-                  mb: 4
+                  mb: 6,
+                  fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                  lineHeight: { xs: 1.6, md: 1.7 },
+                  letterSpacing: '0.01em',
+                  px: { xs: 2, md: 3 },
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.6)'
                 }}
               >
                 Para proteger y controlar tu negocio te ofrecemos un sistema de intrusión a medida, solo tenés que dejarnos tus datos y nos estaremos comunicando para contarte en cómo podemos ayudarte
@@ -173,11 +224,11 @@ function Contacto() {
                     sx: {
                       color: 'white',
                       '& input::placeholder': {
-                        color: '#FFD700',
+                        color: '#ffff00',
                         opacity: 0.7
                       },
-                      '& fieldset': { borderColor: errors.name ? 'error.main' : '#FFD700' },
-                      '&:hover fieldset': { borderColor: errors.name ? 'error.main' : '#FFD700' },
+                      '& fieldset': { borderColor: errors.name ? 'error.main' : '#ffff00' },
+                      '&:hover fieldset': { borderColor: errors.name ? 'error.main' : '#ffff00' },
                       backgroundColor: 'rgba(255, 255, 255, 0.3)',
                       '&.Mui-disabled': {
                         color: 'white',
@@ -200,10 +251,10 @@ function Contacto() {
                   disabled={isSubmitting}
                   InputProps={{
                     sx: {
-                      color: '#FFD700',
-                      borderColor: '#FFD700',
-                      '& fieldset': { borderColor: errors.email ? 'error.main' : '#FFD700' },
-                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      color: '#ffff00',
+                      borderColor: '#ffff00',
+                      '& fieldset': { borderColor: errors.email ? 'error.main' : '#ffff00' },
+                      '&:hover fieldset': { borderColor: '#ffff00' },
                       backgroundColor: 'rgba(255, 255, 255, 0.3)'
                     }
                   }}
@@ -222,10 +273,10 @@ function Contacto() {
                   disabled={isSubmitting}
                   InputProps={{
                     sx: {
-                      color: '#FFD700',
-                      borderColor: '#FFD700',
-                      '& fieldset': { borderColor: errors.phone ? 'error.main' : '#FFD700' },
-                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      color: '#ffff00',
+                      borderColor: '#ffff00',
+                      '& fieldset': { borderColor: errors.phone ? 'error.main' : '#ffff00' },
+                      '&:hover fieldset': { borderColor: '#ffff00' },
                       backgroundColor: 'rgba(255, 255, 255, 0.3)'
                     }
                   }}
@@ -248,11 +299,11 @@ function Contacto() {
                     sx: {
                       color: 'white',
                       '& textarea::placeholder': {
-                        color: '#FFD700',
+                        color: '#ffff00',
                         opacity: 0.7
                       },
-                      '& fieldset': { borderColor: errors.message ? 'error.main' : '#FFD700' },
-                      '&:hover fieldset': { borderColor: '#FFD700' },
+                      '& fieldset': { borderColor: errors.message ? 'error.main' : '#ffff00' },
+                      '&:hover fieldset': { borderColor: '#ffff00' },
                       backgroundColor: 'rgba(255, 255, 255, 0.3)',
                       '&.Mui-disabled': {
                         color: 'white',
@@ -270,17 +321,22 @@ function Contacto() {
                   size="large"
                   disabled={isSubmitting}
                   sx={{
-                    mt: 2,
-                    py: 1.5,
-                    backgroundColor: '#FFD700',
+                    mt: 3,
+                    py: 2,
+                    px: 4,
+                    backgroundColor: '#ffff00',
                     color: 'black',
                     fontWeight: 'bold',
+                    fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                    letterSpacing: '0.02em',
                     '&:hover': {
-                      backgroundColor: '#FFD700',
-                      opacity: 0.9
+                      backgroundColor: '#ff0000',
+                      color: '#ffffff',
+                      transform: 'translateY(-3px)',
+                      boxShadow: '0 6px 20px rgba(255, 0, 0, 0.4)'
                     },
                     '&.Mui-disabled': {
-                      backgroundColor: '#FFD700',
+                      backgroundColor: '#ffff00',
                       opacity: 0.7,
                       color: 'rgba(0, 0, 0, 0.7)'
                     }
@@ -326,17 +382,17 @@ function Contacto() {
             marginTop: '2rem'
           }}
         >
-          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 6 }}>
+          <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 8, mt: 4, fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, textShadow: '4px 4px 8px rgba(0,0,0,0.8)', letterSpacing: '0.03em', color: '#ffff00' }}>
             ¿Por qué elegirnos?
           </Typography>
-          <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
+          <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 5, fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.7, md: 1.8 }, letterSpacing: '0.01em', px: { xs: 3, md: 4 }, textAlign: 'justify' }}>
             En SISE ofrecemos soluciones de seguridad personalizadas y efectivas. Contamos con un equipo técnico con más de 30 años de experiencia y utilizamos tecnología de vanguardia.{' '}
           </Typography>
-          <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 4 }}>
+          <Typography variant="body1" paragraph align="center" sx={{ maxWidth: '900px', mx: 'auto', mb: 5, fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.7, md: 1.8 }, letterSpacing: '0.01em', px: { xs: 3, md: 4 }, textAlign: 'justify' }}>
             Te asesoramos para diseñar e instalar sistemas a medida, preservando la estética del espacio y utilizando equipamiento de marcas líderes en el rubro.{' '}
           </Typography>
-          <Typography variant="body1" align="center" sx={{ maxWidth: '900px', mx: 'auto' }}>
-            <Button variant="contained" color="primary" size="large" href="/nosotros" sx={{ mt: 2 }}>
+          <Typography variant="body1" align="center" sx={{ maxWidth: '900px', mx: 'auto', fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, lineHeight: { xs: 1.7, md: 1.8 }, letterSpacing: '0.01em', px: { xs: 3, md: 4 } }}>
+            <Button variant="contained" color="primary" size="large" href="/nosotros" sx={{ mt: 3, fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' }, py: 2, px: 4, fontWeight: 'bold', letterSpacing: '0.02em' }}>
               Nosotros
             </Button>
           </Typography>
@@ -356,7 +412,8 @@ function Contacto() {
           {submitStatus.message}
         </Alert>
       </Snackbar>
-    </Container>
+      </Container>
+    </Box>
   );
 }
 
